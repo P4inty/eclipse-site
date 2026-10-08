@@ -10,9 +10,7 @@
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#140a26">
   <link rel="icon" href="assets/sigil.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+SC:wght@700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/grenze-gotisch.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-ring="hearth">
@@ -36,20 +34,24 @@
         </filter>
       </defs>
       <circle class="ec-halo" r="205" fill="url(#ec-glow)"/>
-      <g class="ec-corona">
-        <circle r="86" fill="url(#ec-ray)" opacity="0.55" filter="url(#ec-blur)"/>
-        <g fill="url(#ec-ray)" filter="url(#ec-wisp)">
-          <path d="M-53.1 23.3L-160.9 49.5L-57.0 10.7Z" opacity="0.40"/><path d="M30.5 49.3L60.4 122.1L15.3 55.9Z" opacity="0.29"/><path d="M50.9 27.8L157.1 114.0L46.6 34.6Z" opacity="0.54"/><path d="M-35.7 -45.7L-73.5 -107.4L-30.1 -49.6Z" opacity="0.20"/><path d="M26.7 51.5L38.6 95.8L15.6 55.9Z" opacity="0.49"/><path d="M-58.0 2.1L-172.3 -19.9L-55.8 -15.9Z" opacity="0.28"/><path d="M57.1 -10.0L202.0 -7.5L57.4 8.3Z" opacity="0.26"/><path d="M-11.1 56.9L-22.9 77.7L-17.1 55.4Z" opacity="0.32"/><path d="M54.5 -19.7L124.7 -27.2L57.1 -10.4Z" opacity="0.35"/><path d="M55.9 -15.3L124.8 -11.3L58.0 1.2Z" opacity="0.28"/><path d="M53.9 21.3L179.1 98.2L43.7 38.2Z" opacity="0.27"/><path d="M49.5 30.2L143.2 107.1L43.5 38.3Z" opacity="0.35"/><path d="M27.6 51.0L48.8 109.8L14.3 56.2Z" opacity="0.34"/><path d="M20.6 54.2L31.1 118.4L6.0 57.7Z" opacity="0.51"/><path d="M20.5 54.3L36.1 118.9L7.7 57.5Z" opacity="0.55"/><path d="M17.7 55.2L29.5 113.0L8.7 57.3Z" opacity="0.21"/><path d="M53.0 23.5L129.2 79.3L43.8 38.0Z" opacity="0.35"/><path d="M52.9 -23.9L144.5 -43.9L57.8 -5.2Z" opacity="0.24"/><path d="M46.4 -34.8L104.4 -63.5L50.7 -28.2Z" opacity="0.53"/><path d="M25.3 52.2L50.6 140.9L12.6 56.6Z" opacity="0.22"/><path d="M57.8 4.5L159.8 34.7L53.2 23.0Z" opacity="0.48"/><path d="M-52.4 -24.8L-116.7 -72.3L-41.6 -40.4Z" opacity="0.26"/><path d="M-55.9 -15.4L-176.1 -79.3L-51.5 -26.6Z" opacity="0.26"/><path d="M58.0 1.9L158.2 10.3L57.1 10.1Z" opacity="0.32"/><path d="M-56.0 -15.0L-132.2 -74.1L-46.3 -34.9Z" opacity="0.42"/><path d="M-23.8 -52.9L-48.2 -105.9L-18.0 -55.1Z" opacity="0.52"/><path d="M-24.0 -52.8L-36.5 -113.9L-11.0 -57.0Z" opacity="0.45"/><path d="M-21.1 54.0L-46.9 94.3L-27.5 51.1Z" opacity="0.51"/><path d="M-11.8 -56.8L-11.4 -115.2L2.5 -57.9Z" opacity="0.43"/><path d="M42.3 -39.6L104.9 -68.7L51.1 -27.5Z" opacity="0.39"/><path d="M-46.4 -34.7L-120.2 -108.6L-34.8 -46.4Z" opacity="0.42"/><path d="M57.3 -9.0L188.8 -2.6L57.8 4.2Z" opacity="0.39"/><path d="M-50.4 28.8L-115.5 53.0L-56.5 13.1Z" opacity="0.40"/><path d="M-56.3 14.1L-162.3 17.3L-58.0 -0.4Z" opacity="0.52"/><path d="M3.2 57.9L-0.1 84.5L-7.4 57.5Z" opacity="0.24"/><path d="M43.0 -38.9L100.3 -70.6L52.2 -25.2Z" opacity="0.43"/><path d="M26.4 51.6L36.2 126.8L10.0 57.1Z" opacity="0.32"/><path d="M-53.7 -21.9L-115.5 -72.9L-45.9 -35.4Z" opacity="0.49"/><path d="M-17.6 -55.3L-30.5 -119.7L-10.4 -57.1Z" opacity="0.28"/><path d="M18.4 55.0L28.7 113.2L7.5 57.5Z" opacity="0.49"/><path d="M57.1 -10.2L127.0 -8.7L57.9 -2.8Z" opacity="0.20"/><path d="M-22.1 -53.6L-36.0 -109.4L-7.5 -57.5Z" opacity="0.23"/><path d="M-54.1 21.0L-142.5 48.3L-56.9 11.4Z" opacity="0.20"/><path d="M-45.7 -35.7L-109.1 -123.8L-33.3 -47.5Z" opacity="0.53"/><path d="M-27.0 -51.3L-55.1 -108.5L-19.3 -54.7Z" opacity="0.35"/><path d="M-17.5 -55.3L-20.3 -99.5L-8.3 -57.4Z" opacity="0.37"/><path d="M-49.5 -30.2L-116.8 -112.7L-36.5 -45.1Z" opacity="0.21"/><path d="M50.0 -29.3L113.5 -49.1L55.1 -18.1Z" opacity="0.52"/><path d="M-36.5 45.0L-86.2 75.7L-45.9 35.5Z" opacity="0.35"/><path d="M-40.9 -41.2L-86.5 -125.6L-25.6 -52.0Z" opacity="0.45"/><path d="M21.4 53.9L31.3 135.9L4.8 57.8Z" opacity="0.47"/><path d="M-22.2 53.6L-39.6 95.7L-27.4 51.1Z" opacity="0.34"/><path d="M-56.2 -14.2L-169.0 -62.3L-53.8 -21.7Z" opacity="0.20"/><path d="M13.9 -56.3L22.1 -79.8L21.7 -53.8Z" opacity="0.24"/><path d="M-57.9 3.3L-199.8 -31.7L-56.0 -15.1Z" opacity="0.36"/><path d="M52.5 -24.7L109.6 -39.4L56.9 -11.4Z" opacity="0.45"/><path d="M-42.8 -39.1L-116.2 -132.2L-31.1 -49.0Z" opacity="0.32"/><path d="M27.8 -50.9L64.4 -83.9L37.2 -44.5Z" opacity="0.37"/><path d="M-55.0 -18.4L-149.7 -76.3L-48.0 -32.5Z" opacity="0.19"/><path d="M54.4 -20.2L143.8 -26.9L58.0 -1.7Z" opacity="0.36"/><path d="M-26.2 -51.8L-36.4 -111.3L-15.7 -55.8Z" opacity="0.52"/><path d="M-3.2 57.9L-14.8 92.2L-10.7 57.0Z" opacity="0.51"/><path d="M-55.6 16.5L-129.4 12.5L-58.0 0.4Z" opacity="0.23"/><path d="M8.0 -57.5L16.4 -78.5L13.2 -56.5Z" opacity="0.30"/><path d="M-31.1 49.0L-57.4 81.0L-39.9 42.1Z" opacity="0.37"/><path d="M4.1 57.9L1.1 93.1L-4.5 57.8Z" opacity="0.33"/><path d="M-58.0 -1.8L-135.3 -27.6L-54.7 -19.2Z" opacity="0.38"/><path d="M31.9 -48.4L63.9 -81.4L36.9 -44.7Z" opacity="0.48"/><path d="M42.2 -39.8L86.6 -65.2L51.8 -26.1Z" opacity="0.55"/><path d="M39.5 -42.5L71.3 -64.6L48.1 -32.3Z" opacity="0.22"/><path d="M26.6 -51.5L44.6 -80.8L30.6 -49.3Z" opacity="0.43"/><path d="M57.8 -4.6L173.5 29.4L55.4 17.3Z" opacity="0.22"/><path d="M-57.6 7.1L-173.3 0.3L-56.9 -11.2Z" opacity="0.21"/><path d="M49.9 29.5L122.9 98.4L40.4 41.6Z" opacity="0.23"/><path d="M31.7 48.6L48.1 127.8L14.1 56.3Z" opacity="0.22"/><path d="M56.7 12.4L170.6 65.9L49.0 31.0Z" opacity="0.35"/><path d="M-58.0 -1.8L-173.7 -21.0L-57.3 -9.3Z" opacity="0.49"/><path d="M29.4 50.0L63.8 126.1L18.9 54.8Z" opacity="0.24"/><path d="M-57.7 5.6L-185.0 -19.2L-56.1 -14.6Z" opacity="0.50"/><path d="M-44.9 -36.7L-104.2 -123.7L-34.2 -46.9Z" opacity="0.48"/><path d="M2.7 57.9L-10.0 111.1L-8.7 57.3Z" opacity="0.33"/><path d="M41.5 -40.6L106.5 -75.7L50.2 -29.1Z" opacity="0.33"/><path d="M-15.0 -56.0L-22.2 -94.5L-4.7 -57.8Z" opacity="0.31"/><path d="M-44.8 -36.8L-87.8 -108.7L-28.6 -50.5Z" opacity="0.30"/><path d="M-36.1 -45.4L-71.4 -128.6L-25.9 -51.9Z" opacity="0.42"/><path d="M-20.3 -54.3L-41.7 -138.3L-14.7 -56.1Z" opacity="0.45"/><path d="M0.6 58.0L-2.5 92.9L-5.4 57.7Z" opacity="0.22"/><path d="M4.3 57.8L-6.9 112.1L-5.0 57.8Z" opacity="0.39"/><path d="M57.7 -5.9L189.0 -3.6L58.0 2.4Z" opacity="0.46"/><path d="M57.3 8.8L151.8 37.8L53.1 23.4Z" opacity="0.36"/>
+      <g class="ec-total">
+        <g class="ec-corona">
+          <circle r="86" fill="url(#ec-ray)" opacity="0.55" filter="url(#ec-blur)"/>
+          <g class="ec-rays" fill="url(#ec-ray)" filter="url(#ec-wisp)">
+            <path d="M-53.1 23.3L-160.9 49.5L-57.0 10.7Z" opacity="0.40"/><path d="M30.5 49.3L60.4 122.1L15.3 55.9Z" opacity="0.29"/><path d="M50.9 27.8L157.1 114.0L46.6 34.6Z" opacity="0.54"/><path d="M-35.7 -45.7L-73.5 -107.4L-30.1 -49.6Z" opacity="0.20"/><path d="M26.7 51.5L38.6 95.8L15.6 55.9Z" opacity="0.49"/><path d="M-58.0 2.1L-172.3 -19.9L-55.8 -15.9Z" opacity="0.28"/><path d="M57.1 -10.0L202.0 -7.5L57.4 8.3Z" opacity="0.26"/><path d="M-11.1 56.9L-22.9 77.7L-17.1 55.4Z" opacity="0.32"/><path d="M54.5 -19.7L124.7 -27.2L57.1 -10.4Z" opacity="0.35"/><path d="M55.9 -15.3L124.8 -11.3L58.0 1.2Z" opacity="0.28"/><path d="M53.9 21.3L179.1 98.2L43.7 38.2Z" opacity="0.27"/><path d="M49.5 30.2L143.2 107.1L43.5 38.3Z" opacity="0.35"/><path d="M27.6 51.0L48.8 109.8L14.3 56.2Z" opacity="0.34"/><path d="M20.6 54.2L31.1 118.4L6.0 57.7Z" opacity="0.51"/><path d="M20.5 54.3L36.1 118.9L7.7 57.5Z" opacity="0.55"/><path d="M17.7 55.2L29.5 113.0L8.7 57.3Z" opacity="0.21"/><path d="M53.0 23.5L129.2 79.3L43.8 38.0Z" opacity="0.35"/><path d="M52.9 -23.9L144.5 -43.9L57.8 -5.2Z" opacity="0.24"/><path d="M46.4 -34.8L104.4 -63.5L50.7 -28.2Z" opacity="0.53"/><path d="M25.3 52.2L50.6 140.9L12.6 56.6Z" opacity="0.22"/><path d="M57.8 4.5L159.8 34.7L53.2 23.0Z" opacity="0.48"/><path d="M-52.4 -24.8L-116.7 -72.3L-41.6 -40.4Z" opacity="0.26"/><path d="M-55.9 -15.4L-176.1 -79.3L-51.5 -26.6Z" opacity="0.26"/><path d="M58.0 1.9L158.2 10.3L57.1 10.1Z" opacity="0.32"/><path d="M-56.0 -15.0L-132.2 -74.1L-46.3 -34.9Z" opacity="0.42"/><path d="M-23.8 -52.9L-48.2 -105.9L-18.0 -55.1Z" opacity="0.52"/><path d="M-24.0 -52.8L-36.5 -113.9L-11.0 -57.0Z" opacity="0.45"/><path d="M-21.1 54.0L-46.9 94.3L-27.5 51.1Z" opacity="0.51"/><path d="M-11.8 -56.8L-11.4 -115.2L2.5 -57.9Z" opacity="0.43"/><path d="M42.3 -39.6L104.9 -68.7L51.1 -27.5Z" opacity="0.39"/><path d="M-46.4 -34.7L-120.2 -108.6L-34.8 -46.4Z" opacity="0.42"/><path d="M57.3 -9.0L188.8 -2.6L57.8 4.2Z" opacity="0.39"/><path d="M-50.4 28.8L-115.5 53.0L-56.5 13.1Z" opacity="0.40"/><path d="M-56.3 14.1L-162.3 17.3L-58.0 -0.4Z" opacity="0.52"/><path d="M3.2 57.9L-0.1 84.5L-7.4 57.5Z" opacity="0.24"/><path d="M43.0 -38.9L100.3 -70.6L52.2 -25.2Z" opacity="0.43"/><path d="M26.4 51.6L36.2 126.8L10.0 57.1Z" opacity="0.32"/><path d="M-53.7 -21.9L-115.5 -72.9L-45.9 -35.4Z" opacity="0.49"/><path d="M-17.6 -55.3L-30.5 -119.7L-10.4 -57.1Z" opacity="0.28"/><path d="M18.4 55.0L28.7 113.2L7.5 57.5Z" opacity="0.49"/><path d="M57.1 -10.2L127.0 -8.7L57.9 -2.8Z" opacity="0.20"/><path d="M-22.1 -53.6L-36.0 -109.4L-7.5 -57.5Z" opacity="0.23"/><path d="M-54.1 21.0L-142.5 48.3L-56.9 11.4Z" opacity="0.20"/><path d="M-45.7 -35.7L-109.1 -123.8L-33.3 -47.5Z" opacity="0.53"/><path d="M-27.0 -51.3L-55.1 -108.5L-19.3 -54.7Z" opacity="0.35"/><path d="M-17.5 -55.3L-20.3 -99.5L-8.3 -57.4Z" opacity="0.37"/><path d="M-49.5 -30.2L-116.8 -112.7L-36.5 -45.1Z" opacity="0.21"/><path d="M50.0 -29.3L113.5 -49.1L55.1 -18.1Z" opacity="0.52"/><path d="M-36.5 45.0L-86.2 75.7L-45.9 35.5Z" opacity="0.35"/><path d="M-40.9 -41.2L-86.5 -125.6L-25.6 -52.0Z" opacity="0.45"/><path d="M21.4 53.9L31.3 135.9L4.8 57.8Z" opacity="0.47"/><path d="M-22.2 53.6L-39.6 95.7L-27.4 51.1Z" opacity="0.34"/><path d="M-56.2 -14.2L-169.0 -62.3L-53.8 -21.7Z" opacity="0.20"/><path d="M13.9 -56.3L22.1 -79.8L21.7 -53.8Z" opacity="0.24"/><path d="M-57.9 3.3L-199.8 -31.7L-56.0 -15.1Z" opacity="0.36"/><path d="M52.5 -24.7L109.6 -39.4L56.9 -11.4Z" opacity="0.45"/><path d="M-42.8 -39.1L-116.2 -132.2L-31.1 -49.0Z" opacity="0.32"/><path d="M27.8 -50.9L64.4 -83.9L37.2 -44.5Z" opacity="0.37"/><path d="M-55.0 -18.4L-149.7 -76.3L-48.0 -32.5Z" opacity="0.19"/><path d="M54.4 -20.2L143.8 -26.9L58.0 -1.7Z" opacity="0.36"/><path d="M-26.2 -51.8L-36.4 -111.3L-15.7 -55.8Z" opacity="0.52"/><path d="M-3.2 57.9L-14.8 92.2L-10.7 57.0Z" opacity="0.51"/><path d="M-55.6 16.5L-129.4 12.5L-58.0 0.4Z" opacity="0.23"/><path d="M8.0 -57.5L16.4 -78.5L13.2 -56.5Z" opacity="0.30"/><path d="M-31.1 49.0L-57.4 81.0L-39.9 42.1Z" opacity="0.37"/><path d="M4.1 57.9L1.1 93.1L-4.5 57.8Z" opacity="0.33"/><path d="M-58.0 -1.8L-135.3 -27.6L-54.7 -19.2Z" opacity="0.38"/><path d="M31.9 -48.4L63.9 -81.4L36.9 -44.7Z" opacity="0.48"/><path d="M42.2 -39.8L86.6 -65.2L51.8 -26.1Z" opacity="0.55"/><path d="M39.5 -42.5L71.3 -64.6L48.1 -32.3Z" opacity="0.22"/><path d="M26.6 -51.5L44.6 -80.8L30.6 -49.3Z" opacity="0.43"/><path d="M57.8 -4.6L173.5 29.4L55.4 17.3Z" opacity="0.22"/><path d="M-57.6 7.1L-173.3 0.3L-56.9 -11.2Z" opacity="0.21"/><path d="M49.9 29.5L122.9 98.4L40.4 41.6Z" opacity="0.23"/><path d="M31.7 48.6L48.1 127.8L14.1 56.3Z" opacity="0.22"/><path d="M56.7 12.4L170.6 65.9L49.0 31.0Z" opacity="0.35"/><path d="M-58.0 -1.8L-173.7 -21.0L-57.3 -9.3Z" opacity="0.49"/><path d="M29.4 50.0L63.8 126.1L18.9 54.8Z" opacity="0.24"/><path d="M-57.7 5.6L-185.0 -19.2L-56.1 -14.6Z" opacity="0.50"/><path d="M-44.9 -36.7L-104.2 -123.7L-34.2 -46.9Z" opacity="0.48"/><path d="M2.7 57.9L-10.0 111.1L-8.7 57.3Z" opacity="0.33"/><path d="M41.5 -40.6L106.5 -75.7L50.2 -29.1Z" opacity="0.33"/><path d="M-15.0 -56.0L-22.2 -94.5L-4.7 -57.8Z" opacity="0.31"/><path d="M-44.8 -36.8L-87.8 -108.7L-28.6 -50.5Z" opacity="0.30"/><path d="M-36.1 -45.4L-71.4 -128.6L-25.9 -51.9Z" opacity="0.42"/><path d="M-20.3 -54.3L-41.7 -138.3L-14.7 -56.1Z" opacity="0.45"/><path d="M0.6 58.0L-2.5 92.9L-5.4 57.7Z" opacity="0.22"/><path d="M4.3 57.8L-6.9 112.1L-5.0 57.8Z" opacity="0.39"/><path d="M57.7 -5.9L189.0 -3.6L58.0 2.4Z" opacity="0.46"/><path d="M57.3 8.8L151.8 37.8L53.1 23.4Z" opacity="0.36"/>
+          </g>
+          <circle class="ec-chromo" r="61.5" fill="none" stroke="#ff4a2e" stroke-width="3" filter="url(#ec-soft)"/>
+          <g class="ec-proms" fill="#ff5a3a" filter="url(#ec-soft)"><ellipse cx="-59.0" cy="-21.5" rx="4.5" ry="7.0" transform="rotate(290 -59.0 -21.5)"/><ellipse cx="47.5" cy="-39.9" rx="3.0" ry="5.0" transform="rotate(410 47.5 -39.9)"/><ellipse cx="-5.4" cy="61.4" rx="3.5" ry="4.0" transform="rotate(185 -5.4 61.4)"/><ellipse cx="-20.9" cy="-57.5" rx="2.5" ry="3.0" transform="rotate(340 -20.9 -57.5)"/></g>
         </g>
-        <circle r="61.5" fill="none" stroke="#ff4a2e" stroke-width="3" filter="url(#ec-soft)"/>
-        <g fill="#ff5a3a" filter="url(#ec-soft)"><ellipse cx="-59.0" cy="-21.5" rx="4.5" ry="7.0" transform="rotate(290 -59.0 -21.5)"/><ellipse cx="47.5" cy="-39.9" rx="3.0" ry="5.0" transform="rotate(410 47.5 -39.9)"/><ellipse cx="-5.4" cy="61.4" rx="3.5" ry="4.0" transform="rotate(185 -5.4 61.4)"/><ellipse cx="-20.9" cy="-57.5" rx="2.5" ry="3.0" transform="rotate(340 -20.9 -57.5)"/></g>
       </g>
       <circle class="ec-sun" r="60" fill="url(#ec-sun)"/>
-      <circle class="ec-moon" r="61" fill="url(#ec-moon)"/>
-      <g class="ec-diamond" transform="translate(-44.6 -40.1)">
-        <circle r="16" fill="#fff6e0" opacity="0.5" filter="url(#ec-blur)"/>
-        <circle r="5" fill="#fff" filter="url(#ec-soft)"/>
-        <ellipse rx="80" ry="1.6" fill="#fffaf0" opacity="0.75" filter="url(#ec-soft)"/><ellipse rx="1.4" ry="44" fill="#fffaf0" opacity="0.6" filter="url(#ec-soft)"/>
+      <g class="ec-drift"><circle class="ec-moon" r="61" fill="url(#ec-moon)"/></g>
+      <g class="ec-total">
+        <g class="ec-diamond" transform="translate(-44.6 -40.1)">
+          <circle r="16" fill="#fff6e0" opacity="0.5" filter="url(#ec-blur)"/>
+          <circle r="5" fill="#fff" filter="url(#ec-soft)"/>
+          <ellipse rx="80" ry="1.6" fill="#fffaf0" opacity="0.75" filter="url(#ec-soft)"/><ellipse rx="1.4" ry="44" fill="#fffaf0" opacity="0.6" filter="url(#ec-soft)"/>
+        </g>
       </g>
     </svg>
     <div class="hero-text">
@@ -184,80 +186,89 @@
     </section>
 
     <section class="board" id="board" data-ring="board">
-      <div class="board-head">
+      <div class="ring-head">
         <h2>The notice board</h2>
-        <p>Back in Last Hearth, by the gate. Eclipse is not open yet. It is being built by a small group, and we are
-          looking for people who want a slow, harsh world that runs on stories, and who want a say in it before it
-          opens.</p>
+        <p class="motto">Back in Last Hearth, by the gate.</p>
       </div>
+      <p class="lead board-lead">Eclipse is not open yet. It is being built by a small group, and we are looking for
+        people who want a slow, harsh world that runs on stories, and who want a say in it before it opens.</p>
 
-      <div class="notices">
-        <article class="notice n1">
-          <h3>Wanted: the living</h3>
+      <h3 class="board-sub">Wanted</h3>
+      <div class="wanted">
+        <article class="post">
+          <p class="post-role">Testers</p>
+          <h4>The living</h4>
           <p>To walk the rings, die in them and tell us what broke. Much of the world only works with two or more:
             treating a wound, taking an apprentice, carrying a letter, a trade.</p>
-          <p class="sig">Testers</p>
         </article>
-
-        <article class="notice n2">
-          <h3>Wanted: masons</h3>
-          <p>Last Hearth is still an empty clearing with six roads running into it. Walls and gates, a cathedral, a
-            keep, the bazaar, the infirmary, taverns. Ruins and camps for the wilds.</p>
-          <p class="sig">Builders</p>
+        <article class="post">
+          <p class="post-role">Builders</p>
+          <h4>Masons</h4>
+          <p>Raise the world with us: a city that is still to be built, and everything that lies along the roads outside
+            it. You decide how it looks and how it feels to walk through.</p>
         </article>
-
-        <article class="notice n3 ledger">
-          <h3>What stands</h3>
-          <ul>
-            <li class="yes">The three rings, the caverns, the mountains, weather and spawns per ring</li>
-            <li class="yes">Characters, speech ranges, renown and castes</li>
-            <li class="yes">Trades and apprenticeships, our own recipe book</li>
-            <li class="yes">Wounds, the fall, corruption, the mind</li>
-            <li class="yes">Coin, the mint, trade chests, the notice board, letters, land</li>
-            <li class="no">Last Hearth itself</li>
-            <li class="no">Infection, the remaining trades, the corrupted rising again</li>
-          </ul>
-          <p class="sig">The steward</p>
+        <article class="post">
+          <p class="post-role">Storytellers</p>
+          <h4>Chroniclers</h4>
+          <p>Write the history of the world, its peoples and its secrets, and bring them to life. Lore writers, and game
+            masters who want to run scenes once there is someone to run them for.</p>
         </article>
-
-        <article class="notice n4">
-          <h3>Wanted: chroniclers</h3>
-          <p>Lore, factions, the Rot Cult in the swamp, the first masters of each trade. And game masters who want to
-            run scenes once there is someone to run them for.</p>
-          <p class="sig">Storytellers</p>
-        </article>
-
-        <article class="notice n5">
-          <h3>Wanted: artificers</h3>
+        <article class="post">
+          <p class="post-role">Artists and developers</p>
+          <h4>Artificers</h4>
           <p>Models and textures in the Hytale style. Music for each ring. Java for the server plugins, Go and Svelte
             for the tools of the staff.</p>
-          <p class="sig">Artists and developers</p>
+        </article>
+        <article class="post">
+          <p class="post-role">Ideas</p>
+          <h4>Dreamers</h4>
+          <p>What makes a world feel real: customs, rituals, small hardships, new reasons for players to need each
+            other. Bring your ideas for immersion, argue for them and help us find out whether they hold.</p>
         </article>
       </div>
 
-      <div class="letter" data-sealed>
+      <h3 class="board-sub">What stands</h3>
+      <p class="stands-note">First versions, not finished systems. They work, but each of them will change as we play,
+        and as the people who join bring their own ideas.</p>
+      <div class="stands">
+        <div>
+          <p class="stands-head">First version in place</p>
+          <ul class="done">
+            <li>The three rings, the caverns, the mountains, weather and spawns per ring</li>
+            <li>Characters, speech ranges, renown and castes</li>
+            <li>Trades and apprenticeships, our own recipe book</li>
+            <li>Wounds, the fall, corruption, the mind</li>
+            <li>Coin, the mint, trade chests, the notice board, letters, land</li>
+          </ul>
+        </div>
+        <div>
+          <p class="stands-head">Still to build</p>
+          <ul class="open">
+            <li>Last Hearth itself</li>
+            <li>Infection, the remaining trades, the corrupted rising again</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="letter">
         <div class="letter-paper">
           <p class="letter-to">To whoever reads this,</p>
-          <div class="letter-inner"><div>
-            <p>tell us who you are, what you would like to do, and how much time you have. No experience needed, only
-              patience with a world that is meant to be hard.</p>
-            <p class="letter-links">
-              <a href="https://discord.gg/REPLACE_ME">Join us on Discord</a>
-              <a href="https://github.com/P4inty">Find us on GitHub</a>
-            </p>
-          </div></div>
+          <p>tell us who you are, what you would like to do, and how much time you have. No experience needed, only
+            patience with a world that is meant to be hard.</p>
+          <p class="letter-links">
+            <a href="https://discord.gg/zFcXQ2vhwx">Join us on Discord</a>
+            <a href="https://github.com/P4inty">Find us on GitHub</a>
+          </p>
         </div>
-        <button class="seal" type="button" aria-label="Break the seal and read the letter">
-          <span class="seal-half left"></span><span class="seal-half right"></span>
-        </button>
-        <p class="seal-hint">Break the seal</p>
+        <span class="seal" aria-hidden="true"><span class="seal-half left"></span><span class="seal-half right"></span></span>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <p>Eclipse is a fan project, not affiliated with or endorsed by Hypixel Studios. Hytale is a trademark of its
-      owners.</p>
+      owners.
+      <a href="legal.html">Legal notice and privacy</a></p>
   </footer>
 
   <script src="assets/main.js" defer></script>

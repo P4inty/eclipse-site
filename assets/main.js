@@ -5,6 +5,9 @@
   const places = [...document.querySelectorAll("[data-ring]:not(body)")];
   const distance = document.querySelector(".distance");
   const road = document.querySelector(".road");
+  const eclipse = document.querySelector(".eclipse");
+  const hero = document.querySelector(".hero");
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function placeAtMiddle() {
     const mid = innerHeight / 2;
@@ -35,6 +38,7 @@
       distance.textContent = describe(here.el, here.progress);
     }
     road.style.setProperty("--road-y", `${-scrollY * 0.6}px`);
+    if (!still) eclipse.style.setProperty("--ec", Math.min(scrollY / (hero.offsetHeight * 0.8), 1).toFixed(3));
   }
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   addEventListener("resize", update);
@@ -152,11 +156,8 @@
   requestAnimationFrame(step);
 })();
 
-// The sealed letter: breaking the seal opens it, as with letters in the game.
+// Stop the eclipse's idle animation while the hero is out of view.
 (() => {
-  const letter = document.querySelector(".letter");
-  letter.querySelector(".seal").addEventListener("click", () => {
-    letter.removeAttribute("data-sealed");
-    letter.querySelector(".letter-links a").focus({ preventScroll: true });
-  });
+  const hero = document.querySelector(".hero");
+  new IntersectionObserver(([e]) => hero.classList.toggle("is-away", !e.isIntersecting)).observe(hero);
 })();

@@ -1,6 +1,13 @@
 /* Eclipse project site. The page is the road from Last Hearth to the Void: colours, weather and the road itself
    change with the ring in view (body[data-ring], set by main.js). */
 
+/* Fonts are served from here, not from Google (no visitor data leaves for a third party). Latin subset, all SIL OFL,
+   see assets/fonts/. Alegreya and Grenze Gotisch are variable, one file covers every weight. */
+@font-face { font-family: "Alegreya"; font-weight: 400 700; font-display: swap; src: url(fonts/alegreya.woff2) format("woff2"); }
+@font-face { font-family: "Alegreya"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(fonts/alegreya-italic.woff2) format("woff2"); }
+@font-face { font-family: "Alegreya SC"; font-weight: 700; font-display: swap; src: url(fonts/alegreya-sc.woff2) format("woff2"); }
+@font-face { font-family: "Grenze Gotisch"; font-weight: 600 700; font-display: swap; src: url(fonts/grenze-gotisch.woff2) format("woff2"); }
+
 @property --sky { syntax: "<color>"; inherits: true; initial-value: #24140b; }
 @property --fog { syntax: "<color>"; inherits: true; initial-value: #d0701f; }
 @property --ink { syntax: "<color>"; inherits: true; initial-value: #fff4e0; }
@@ -10,7 +17,7 @@
 :root {
   --text: "Alegreya", "Iowan Old Style", Georgia, serif;
   --caps: "Alegreya SC", "Alegreya", Georgia, serif;
-  --black: "Jacquard 24", "UnifrakturMaguntia", "Old English Text MT", serif;
+  --black: "Grenze Gotisch", "UnifrakturMaguntia", "Old English Text MT", serif;
   --rail: 0px;
   --gutter: 20px;
   --paper: #efe2c0;
@@ -124,19 +131,33 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
   width: clamp(260px, 50vmin, 560px); height: auto; overflow: visible;
 }
 .ec-moon { animation: ec-moon 3.2s cubic-bezier(.25, .1, .2, 1) 0.3s both; }
-.ec-halo { animation: ec-halo 3.4s ease 0.3s both; }
+.ec-halo { transform-box: fill-box; transform-origin: center; animation: ec-halo 3.4s ease 0.3s both, ec-breathe 8s ease-in-out 3.7s infinite; }
 .ec-corona { transform-box: fill-box; transform-origin: center; animation: ec-corona 2.4s ease-out 3.1s both; }
-.ec-diamond { animation: ec-diamond 2.2s ease-out 3.1s both; }
+.ec-diamond { animation: ec-diamond 2.2s ease-out 3.1s both, ec-glint 11s ease-in-out 5.3s infinite; }
+/* After totality the eclipse keeps living: the corona turns and breathes, the chromosphere flickers, the
+   diamond ring glints now and then. Paused while the hero is off screen (main.js). */
+.ec-rays { transform-box: view-box; transform-origin: 0 0; animation: ec-spin 240s linear 3.1s infinite; }
+.ec-chromo { animation: ec-flicker 3.7s ease-in-out 3.5s infinite; }
+.ec-proms { animation: ec-flicker 5.3s ease-in-out 4.2s infinite reverse; }
+.hero.is-away .eclipse * { animation-play-state: paused; }
+/* Walking away from the hearth (scrolling down) the moon slides off the sun: totality ends, the corona and the
+   diamond ring go out. --ec runs from 0 to 1 over the hero (main.js). */
+.ec-drift { transform: translate(calc(var(--ec, 0) * -100px), calc(var(--ec, 0) * 58px)); }
+.ec-total { opacity: calc(1 - var(--ec, 0) * 4); }
 @keyframes ec-moon { from { transform: translate(105px, -62px); } }
 @keyframes ec-halo { from { opacity: 1; } to { opacity: 0.55; } }
 @keyframes ec-corona { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
 @keyframes ec-diamond { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0.2; } }
+@keyframes ec-glint { 0%, 70%, 100% { opacity: 0.2; } 80% { opacity: 0.55; } }
+@keyframes ec-breathe { 0%, 100% { opacity: 0.55; transform: none; } 50% { opacity: 0.7; transform: scale(1.04); } }
+@keyframes ec-spin { to { transform: rotate(360deg); } }
+@keyframes ec-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
 .hero-text { max-width: 62rem; }
 .hero h1 {
-  font: 400 clamp(5.2rem, 22vw, 18rem)/0.78 var(--black);
+  font: 600 clamp(5.2rem, 22vw, 18rem)/0.78 var(--black);
   color: var(--ink);
-  margin-left: -0.04em;
+  margin-left: -0.04em; padding-bottom: 0.14em;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 12px 50px rgba(0, 0, 0, 0.55);
 }
 .hero-line { max-width: 34rem; margin-top: 2rem; font-size: 1.45rem; line-height: 1.55; font-weight: 500; }
@@ -156,7 +177,7 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
   max-width: 76rem;
 }
 .ring-head { margin-bottom: 3.5rem; }
-.ring h2 { font: 400 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); color: var(--ink); }
+.ring h2 { font: 600 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); color: var(--ink); }
 .motto { font-style: italic; color: var(--accent); font-size: 1.45rem; margin-top: 0.9rem; max-width: 30rem; }
 
 .ring-body { display: grid; grid-template-columns: minmax(0, 34rem) minmax(0, 19rem); gap: 3rem 6rem; align-items: start; }
@@ -182,63 +203,54 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 }
 .void-small { font-size: 1.3rem; color: var(--dim); margin-top: 1rem; }
 
-/* The notice board in Last Hearth. */
+/* The notice board in Last Hearth: who we are looking for and what stands, in the panels of the rings. */
 .board {
-  position: relative;
-  padding: 18vh var(--gutter) 22vh calc(var(--rail) + var(--gutter));
-  background:
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 148px),
-    repeating-linear-gradient(90deg, transparent 0 60px, rgba(255, 220, 160, 0.025) 60px 90px, transparent 90px 148px),
-    linear-gradient(180deg, transparent, rgba(92, 44, 16, 0.6) 12%, rgba(74, 34, 12, 0.8));
+  padding: 26vh var(--gutter) 22vh calc(var(--rail) + var(--gutter));
+  max-width: 76rem;
 }
-.board-head { max-width: 36rem; margin-bottom: 4.5rem; }
-.board h2 { font: 400 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); margin-bottom: 1.6rem; }
+.board h2 { font: 600 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); color: var(--ink); }
+.board-lead { max-width: 34rem; font-size: 1.45rem; line-height: 1.55; font-weight: 500; }
+.board-sub {
+  font: 700 1.5rem/1 var(--caps); letter-spacing: 0.04em; color: var(--accent);
+  margin: 5rem 0 1.6rem;
+}
 
-.notices {
-  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2.5rem 2rem;
-  max-width: 70rem; align-items: start;
+/* Five posts: three across, then two wider ones; two across on tablets, one on phones. */
+.wanted { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.5rem; }
+.post { grid-column: span 2; }
+.post:nth-child(n+4) { grid-column: span 3; }
+@media (max-width: 1099px) {
+  .wanted { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .post, .post:nth-child(n+4) { grid-column: auto; }
+  .post:last-child { grid-column: 1 / -1; }
 }
-.notice {
-  position: relative; isolation: isolate; color: var(--paper-ink);
-  padding: 2.2rem 1.7rem 1.5rem;
-  font-size: 1.15rem; line-height: 1.5;
-  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.45));
+@media (max-width: 639px) { .wanted { grid-template-columns: 1fr; } }
+.post, .stands > div {
+  padding: 1.4rem 1.5rem 1.6rem;
+  background: color-mix(in srgb, var(--fog) 22%, transparent);
+  border-top: 3px solid var(--accent);
 }
-/* The paper sits behind the text so its torn edge does not clip the shadow. */
-.notice::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background:
-    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.25), transparent 60%),
-    radial-gradient(80% 60% at 90% 100%, rgba(120, 80, 30, 0.25), transparent 70%),
-    var(--paper);
-  clip-path: polygon(0 2%, 7% 0, 22% 1.5%, 41% 0, 63% 1%, 82% 0, 100% 1.6%, 99% 30%, 100% 58%, 98.6% 82%, 100% 99%, 77% 98%, 54% 100%, 31% 98.4%, 12% 100%, 0 98%, 1.2% 70%, 0 41%);
-}
-.notice::before {
-  content: ""; position: absolute; top: 0.8rem; left: 50%; width: 12px; height: 12px; margin-left: -6px;
-  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #9a9086, #3b352f 70%);
-  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.45);
-}
-.notice h3 { font: 700 1.55rem/1.15 var(--caps); color: #7a1414; margin-bottom: 0.7rem; }
-.notice p + p { margin-top: 0.7rem; }
-.notice .sig { text-align: right; font-style: italic; color: #4a3a28; margin-top: 1.1rem; }
-.n1 { grid-column: 1 / span 4; transform: rotate(-1.6deg); }
-.n2 { grid-column: 5 / span 4; transform: rotate(1.1deg) translateY(2.5rem); }
-.n3 { grid-column: 9 / span 4; grid-row: span 2; transform: rotate(-0.6deg); }
-.n4 { grid-column: 2 / span 4; transform: rotate(0.9deg); }
-.n5 { grid-column: 6 / span 3; transform: rotate(-2deg) translateY(1.5rem); }
-@media (max-width: 899px) {
-  .notices { grid-template-columns: 1fr; gap: 2rem; }
-  .notices .notice { grid-column: auto; grid-row: auto; }
-  .n2, .n5 { transform: rotate(1deg); }
-}
-.ledger ul { list-style: none; margin: 0; padding: 0; }
-.ledger li { position: relative; padding-left: 1.6rem; margin-bottom: 0.45rem; }
-.ledger li::before { position: absolute; left: 0; top: 0; }
-.ledger .yes::before { content: "\2713"; color: #3f5a24; }
-.ledger .no { color: #5a4630; }
-.ledger .no::before { content: "\25CB"; color: #8a3a22; }
+.post-role { font-size: 1rem; color: var(--dim); }
+.post h4 { font: 700 1.5rem/1.2 var(--text); color: var(--accent); margin: 0.2rem 0 0.7rem; }
+.post p:last-child { font-size: 1.15rem; line-height: 1.55; }
 
-/* The sealed letter. Breaking the seal reveals the contact links. */
+.stands-note { max-width: 34rem; color: var(--dim); margin: -0.6rem 0 1.6rem; }
+.stands { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1.5rem; }
+@media (max-width: 899px) { .stands { grid-template-columns: 1fr; } }
+.stands > div:last-child { border-top-color: var(--dim); }
+.stands-head { font: 700 1.3rem/1.2 var(--text); margin-bottom: 0.8rem; }
+.stands > div:first-child .stands-head { color: var(--accent); }
+.stands > div:last-child .stands-head { color: var(--dim); }
+.stands ul { list-style: none; margin: 0; padding: 0; font-size: 1.15rem; line-height: 1.5; }
+.stands li { position: relative; padding-left: 1.7rem; margin-bottom: 0.55rem; }
+.stands li::before { position: absolute; left: 0; top: 0; }
+.done li::before { content: "\2713"; color: var(--accent); }
+.open li { color: var(--dim); }
+.open li::before { content: "\25CB"; }
+
+/* The letter with the contact links. Its seal is already broken: whoever pinned it here wants it read. */
+/* The glow behind body text is for the night sky, not for ink on paper. */
+.letter-paper p { text-shadow: none; }
 .letter { position: relative; max-width: 34rem; margin: 9rem 0 0 auto; }
 @media (max-width: 899px) { .letter { margin-top: 6rem; } }
 .letter-paper {
@@ -247,60 +259,47 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
     radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.25), transparent 60%),
     var(--paper);
   color: var(--paper-ink);
-  padding: 2.4rem 2.2rem 3.4rem;
+  padding: 2.4rem 2.2rem 4.4rem;
   box-shadow: 0 18px 30px rgba(0, 0, 0, 0.5);
   transform: rotate(-0.8deg);
   font-size: 1.2rem; line-height: 1.6;
 }
-.letter-to { font-style: italic; }
-.letter-inner {
-  display: grid; grid-template-rows: 1fr; margin-top: 0.6rem;
-  transition: grid-template-rows 0.9s ease, opacity 0.9s ease;
-}
-.letter-inner > div { min-height: 0; overflow: hidden; }
-.letter[data-sealed] .letter-inner { grid-template-rows: 0fr; opacity: 0; }
+.letter-to { font-style: italic; margin-bottom: 0.6rem; }
 .letter-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; margin-top: 1.2rem; }
-.letter-links a { color: var(--wax); font-size: 1.3rem; }
+.letter-links a { color: var(--wax); font-size: 1.3rem; font-weight: 700; }
 
-.seal {
-  position: absolute; left: 50%; bottom: -34px; width: 84px; height: 84px; margin-left: -42px;
-  padding: 0; border: 0; background: none; cursor: pointer;
-}
-.letter:not([data-sealed]) .seal { pointer-events: none; }
+.seal { position: absolute; left: 50%; bottom: -34px; width: 84px; height: 84px; margin-left: -42px; }
 .seal-half {
   position: absolute; inset: 0; border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
   background: radial-gradient(circle at 38% 32%, #b23a32, var(--wax) 55%, #4a0c0c);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 0 0 6px rgba(0, 0, 0, 0.12);
-  transition: transform 0.8s cubic-bezier(.5, -0.3, .6, 1), opacity 0.8s ease;
 }
 .seal-half::after {
   content: "E"; position: absolute; inset: 0; display: grid; place-items: center;
-  font: 400 3rem/1 var(--black); color: #5b0f0f;
+  font: 700 3rem/1 var(--black); color: #5b0f0f;
   text-shadow: 1px 1px 0 rgba(255, 140, 120, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.35);
 }
-.seal-half.left { clip-path: polygon(0 0, 54% 0, 46% 30%, 56% 52%, 44% 76%, 50% 100%, 0 100%); }
-.seal-half.right { clip-path: polygon(54% 0, 100% 0, 100% 100%, 50% 100%, 44% 76%, 56% 52%, 46% 30%); }
-.seal:hover .seal-half.left { transform: rotate(-4deg); }
-.seal:hover .seal-half.right { transform: rotate(4deg); }
-.letter:not([data-sealed]) .seal-half.left { transform: translate(-60px, 120px) rotate(-70deg); opacity: 0; }
-.letter:not([data-sealed]) .seal-half.right { transform: translate(50px, 140px) rotate(80deg); opacity: 0; }
-.seal-hint {
-  position: absolute; left: 0; right: 0; bottom: -4.6rem; text-align: center;
-  font-weight: 700; color: var(--accent); transition: opacity 0.4s;
-}
-.letter:not([data-sealed]) .seal-hint { opacity: 0; }
+.seal-half.left { clip-path: polygon(0 0, 54% 0, 46% 30%, 56% 52%, 44% 76%, 50% 100%, 0 100%); transform: translate(-7px, 3px) rotate(-9deg); }
+.seal-half.right { clip-path: polygon(54% 0, 100% 0, 100% 100%, 50% 100%, 44% 76%, 56% 52%, 46% 30%); transform: translate(6px, -2px) rotate(7deg); }
 
 .footer {
   padding: 2.5rem var(--gutter) 3.5rem calc(var(--rail) + var(--gutter));
   color: var(--dim); font-size: 1rem;
   background: rgba(30, 14, 6, 0.85);
 }
+.footer a { color: var(--dim); }
+
+/* legal.html: one readable column, nothing else. */
+.legal { max-width: 44rem; padding: 3rem var(--gutter) 5rem calc(var(--rail) + var(--gutter)); }
+.legal h1 { font: 600 clamp(2.8rem, 8vw, 4.5rem)/1 var(--black); margin: 3.5rem 0 1.2rem; }
+.legal h2 { font: 700 1.4rem/1.3 var(--text); color: var(--accent); margin: 2.2rem 0 0.4rem; }
+.legal p + p { margin-top: 1rem; }
+.legal-date { color: var(--dim); margin-top: 3rem !important; font-size: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   body { transition: none; }
-  .ec-moon, .ec-halo, .ec-corona, .ec-diamond { animation: none; }
+  .ec-moon, .ec-halo, .ec-corona, .ec-diamond, .ec-rays, .ec-chromo, .ec-proms { animation: none; }
   .ec-halo { opacity: 0.55; }
   .ec-diamond { opacity: 0.2; }
-  .letter-inner, .seal-half { transition: none; }
 }

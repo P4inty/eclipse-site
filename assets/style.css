@@ -1,213 +1,297 @@
+/* Eclipse project site. The page is the road from Last Hearth to the Void: colours, weather and the road itself
+   change with the ring in view (body[data-ring], set by main.js). */
+
+@property --sky { syntax: "<color>"; inherits: true; initial-value: #2b2318; }
+@property --fog { syntax: "<color>"; inherits: true; initial-value: #8a7550; }
+@property --ink { syntax: "<color>"; inherits: true; initial-value: #ece0c4; }
+@property --dim { syntax: "<color>"; inherits: true; initial-value: #b4a37f; }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #d49a3e; }
+
 :root {
-  --bg: #0d0b0c;
-  --bg-2: #151214;
-  --stone: #1d191b;
-  --stone-edge: #2e272a;
-  --ink: #d8cfc2;
-  --ink-dim: #9a8f84;
-  --gold: #c9a35a;
-  --blood: #8e1b1b;
-  --blood-hi: #b52626;
-  --ember: #d9822b;
-  --green: #8fa35a;
-  --orange: #c97a35;
-  --red: #b52626;
-  --serif: "EB Garamond", Georgia, serif;
-  --display: "Cinzel", "Trajan Pro", Georgia, serif;
-  --gutter: clamp(16px, 4vw, 40px);
+  --text: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --caps: "IM Fell English SC", "IM Fell English", Georgia, serif;
+  --black: "Jacquard 24", "UnifrakturMaguntia", "Old English Text MT", serif;
+  --rail: 0px;
+  --gutter: 20px;
+  --paper: #dcceac;
+  --paper-ink: #2b2116;
+  --wax: #7d1717;
+}
+@media (min-width: 900px) { :root { --rail: 64px; --gutter: 56px; } }
+
+body[data-ring="hearth"], body[data-ring="cage"] {
+  --sky: #2b2318; --fog: #8a7550; --ink: #ece0c4; --dim: #b4a37f; --accent: #d49a3e;
+}
+body[data-ring="weald"] {
+  --sky: #191d16; --fog: #4d5640; --ink: #dadccb; --dim: #9ca189; --accent: #aeaa3c;
+}
+body[data-ring="scars"] {
+  --sky: #110e13; --fog: #3c2c42; --ink: #d4cbd6; --dim: #8f8495; --accent: #d4622a;
+}
+body[data-ring="edge"] {
+  --sky: #0a090b; --fog: #1e1b20; --ink: #aaa4aa; --dim: #6f696f; --accent: #8a8086;
+}
+body[data-ring="void"] {
+  --sky: #000; --fog: #000; --ink: #707070; --dim: #3d3d3d; --accent: #707070;
+}
+body[data-ring="board"] {
+  --sky: #21170e; --fog: #6a4a26; --ink: #ecdcbc; --dim: #b8a07a; --accent: #c99437;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background: radial-gradient(ellipse at 50% -10%, #241c18 0%, var(--bg) 55%) fixed, var(--bg);
+  background: var(--sky);
   color: var(--ink);
-  font: 400 1.15rem/1.6 var(--serif);
+  font: 400 1.2rem/1.68 var(--text);
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
   overflow-x: hidden;
+  transition: --sky 1.6s ease, --fog 1.6s ease, --ink 1.6s ease, --dim 1.6s ease, --accent 1.6s ease;
 }
-a { color: var(--gold); }
-h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: 0.06em; margin: 0; }
-h3 { font-size: 1.05rem; color: var(--gold); margin-bottom: 0.5rem; }
-p { margin: 0 0 0.8rem; }
-strong { color: #eadfce; font-weight: 500; }
-
-/* Atmosphere */
-.fog {
-  position: fixed; inset: -20%; pointer-events: none; z-index: 0; opacity: 0.35;
+/* Ground fog: one fixed layer whose colour follows the ring. */
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
-    radial-gradient(40% 30% at 20% 30%, rgba(120, 110, 100, 0.18), transparent 70%),
-    radial-gradient(35% 25% at 80% 60%, rgba(90, 80, 90, 0.16), transparent 70%),
-    radial-gradient(30% 20% at 50% 90%, rgba(110, 90, 70, 0.14), transparent 70%);
-  animation: drift 60s ease-in-out infinite alternate;
+    radial-gradient(90% 55% at 70% 100%, color-mix(in srgb, var(--fog) 55%, transparent), transparent 70%),
+    radial-gradient(70% 40% at 10% 85%, color-mix(in srgb, var(--fog) 35%, transparent), transparent 70%);
 }
-@keyframes drift { to { transform: translate3d(6%, -4%, 0) scale(1.1); } }
-.ash { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-main, .nav, .footer { position: relative; z-index: 1; }
+a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+h1, h2, h3, p { margin: 0; }
 
-/* Navigation */
-.nav {
-  position: sticky; top: 0; z-index: 10;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 0.7rem var(--gutter);
-  background: linear-gradient(to bottom, rgba(13, 11, 12, 0.95), rgba(13, 11, 12, 0.7));
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--stone-edge);
-}
-.brand {
-  display: flex; align-items: center; gap: 0.55rem;
-  font-family: var(--display); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--ink); text-decoration: none;
-}
-.nav nav { display: flex; gap: clamp(0.6rem, 2.5vw, 1.6rem); align-items: center; }
-.nav nav a {
-  color: var(--ink-dim); text-decoration: none; font-family: var(--display); font-size: 0.82rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-}
-.nav nav a:hover { color: var(--ink); }
-.nav .nav-cta { color: var(--blood-hi); }
-@media (max-width: 560px) { .nav nav a:not(.nav-cta) { display: none; } }
+main, .hero, .footer { position: relative; z-index: 2; }
+.weather { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
-/* Hero */
+/* The highway on the left edge. Its stones thin out ring by ring; main.js scrolls it with the page. */
+.road {
+  position: fixed; top: 0; bottom: 0; left: 20px; width: 26px; z-index: 1; pointer-events: none;
+  display: none;
+  background-position: 0 var(--road-y, 0px);
+  transition: opacity 1.6s ease;
+  -webkit-mask: linear-gradient(transparent, #000 8%, #000 92%, transparent);
+          mask: linear-gradient(transparent, #000 8%, #000 92%, transparent);
+}
+@media (min-width: 900px) { .road { display: block; } }
+body[data-ring="hearth"] .road, body[data-ring="cage"] .road, body[data-ring="board"] .road {
+  background-image:
+    linear-gradient(90deg, transparent 12px, rgba(0, 0, 0, 0.45) 12px 14px, transparent 14px),
+    repeating-linear-gradient(180deg, #776a52 0 15px, #2c251b 15px 17px, #6a5e48 17px 31px, #2c251b 31px 33px);
+  background-size: 100% 66px, 100% 66px;
+}
+body[data-ring="weald"] .road {
+  background-image:
+    repeating-linear-gradient(180deg, #4f5040 0 14px, #1c1f17 14px 16px, #464838 16px 26px, transparent 26px 120px, #3e4032 120px 132px, transparent 132px 190px);
+  background-size: 100% 190px;
+}
+body[data-ring="scars"] .road {
+  background-image:
+    repeating-linear-gradient(180deg, #3a3238 0 9px, transparent 9px 230px, #2d272c 230px 236px, transparent 236px 420px);
+  background-size: 100% 420px;
+}
+body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
+
+/* The milestone: how far down the road the reader is. Written along the road on wide screens. */
+.distance {
+  position: fixed; z-index: 3; margin: 0;
+  font: italic 0.95rem/1 var(--text); color: var(--dim); white-space: nowrap;
+  top: 10px; right: 12px; padding: 0.35rem 0.7rem;
+  background: color-mix(in srgb, var(--sky) 85%, transparent);
+}
+@media (min-width: 900px) {
+  .distance {
+    top: auto; right: auto; left: 54px; bottom: 28px; padding: 0; background: none;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+}
+
+/* Hero: dusk over the Gilded Cage, the eclipse above it. */
 .hero {
-  min-height: calc(100vh - 60px); min-height: calc(100svh - 60px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-  padding: 4rem var(--gutter);
-}
-.hero h1 {
-  font-size: clamp(2.6rem, 11vw, 8.5rem); letter-spacing: 0.22em; margin-right: -0.22em;
-  line-height: 1; color: #efe6d8;
-  text-shadow: 0 0 40px rgba(201, 163, 90, 0.25), 0 0 2px rgba(0, 0, 0, 0.8);
-}
-.tagline { font-family: var(--display); color: var(--gold); letter-spacing: 0.14em; margin-top: 1rem; font-size: 1rem; }
-.lede { max-width: 38rem; color: var(--ink); font-size: 1.25rem; margin: 1.6rem auto 2rem; }
-.lede em { display: block; margin-top: 0.8rem; color: var(--blood-hi); font-family: var(--display); font-style: normal; letter-spacing: 0.1em; }
-.hero-note { color: var(--ink-dim); font-size: 0.95rem; margin-top: 1.6rem; font-style: italic; }
-.runes { font-family: "Segoe UI Historic", "Noto Sans Runic", serif; color: var(--blood); letter-spacing: 0.6em; margin-bottom: 1rem; opacity: 0.85; }
-
-.hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; }
-.btn {
-  display: inline-block; padding: 0.75rem 1.5rem;
-  font-family: var(--display); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink); text-decoration: none;
-  background: linear-gradient(#2a2427, #191517);
-  border: 1px solid #3c3336;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 14px rgba(0, 0, 0, 0.5);
-  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
-  transition: filter 0.2s, transform 0.2s;
-}
-.btn:hover { filter: brightness(1.25); transform: translateY(-1px); }
-.btn-blood { background: linear-gradient(#9c2222, #5e1010); border-color: #b52626; color: #f4e9dc; }
-
-/* Sections */
-.section { max-width: 1120px; margin: 0 auto; padding: 5rem var(--gutter); }
-.section h2 {
-  display: flex; align-items: center; gap: 1rem; justify-content: center; text-align: center;
-  font-size: clamp(1.4rem, 4vw, 2.1rem); color: #efe6d8; margin-bottom: 1.4rem;
-}
-.section h2::before, .section h2::after {
-  content: ""; flex: 1; max-width: 160px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--blood));
-}
-.section h2::after { transform: scaleX(-1); }
-.intro { max-width: 44rem; margin: 0 auto 2.6rem; text-align: center; color: var(--ink-dim); }
-
-/* Stone slabs */
-.slab {
-  position: relative; padding: 1.4rem 1.5rem;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: flex-end;
+  padding: 0 var(--gutter) 12vh calc(var(--rail) + var(--gutter));
   background:
-    radial-gradient(120% 80% at 0% 0%, rgba(255, 255, 255, 0.035), transparent 60%),
-    linear-gradient(160deg, #221d20, #161214);
-  border: 1px solid var(--stone-edge);
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
-  clip-path: polygon(0 4px, 4px 0, 38% 0, 40% 3px, 42% 0, calc(100% - 4px) 0, 100% 4px, 100% 62%, calc(100% - 3px) 64%, 100% 66%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px));
+    radial-gradient(60% 50% at 76% 26%, rgba(214, 160, 82, 0.20), transparent 70%),
+    linear-gradient(180deg, #17120c 0%, transparent 60%);
 }
-.slab::before, .slab::after {
-  content: ""; position: absolute; width: 10px; height: 10px; border: 1px solid var(--blood); opacity: 0.7;
+.eclipse {
+  position: absolute; top: 9vh; right: 9vw;
+  width: clamp(150px, 30vmin, 340px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #f4e4bd 0 58%, #e0b46a 66%, rgba(224, 160, 80, 0) 71%);
+  box-shadow: 0 0 60px 18px rgba(222, 165, 85, 0.28), 0 0 160px 60px rgba(180, 120, 60, 0.14);
 }
-.slab::before { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
-.slab::after { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
-.slab p:last-child { margin-bottom: 0; }
-
-.pillars { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
-.pillars .slab { flex: 1 1 280px; max-width: 360px; }
-.pillars p { color: var(--ink-dim); font-size: 1.05rem; }
-
-/* World */
-.world { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
-@media (max-width: 860px) { .world { grid-template-columns: 1fr; } }
-.map { width: 100%; max-width: 520px; margin: 0 auto; display: block; filter: drop-shadow(0 0 40px rgba(0, 0, 0, 0.9)); }
-.map .ring { cursor: pointer; transition: filter 0.25s, opacity 0.25s; }
-.map .ring:hover { filter: brightness(1.25); }
-.map.has-active .ring:not(.active) { opacity: 0.55; }
-.map.has-active .ring.active { filter: brightness(1.2); }
-.roads line { stroke: #7a6a50; stroke-width: 3; stroke-dasharray: 2 0 200 4 60 9 40 14 30 22; opacity: 0.55; pointer-events: none; }
-.roads .ringroad { fill: none; stroke: #6a5c46; stroke-width: 2; stroke-dasharray: 10 8; opacity: 0.4; pointer-events: none; }
-.embers circle { fill: var(--ember); animation: flicker 3s ease-in-out infinite alternate; }
-.embers circle:nth-child(2n) { animation-delay: -1.3s; }
-@keyframes flicker { from { opacity: 0.25; } to { opacity: 0.9; } }
-.hearth { fill: #ffb54a; pointer-events: none; }
-.hearth-glow { fill: #ffb54a; opacity: 0.18; pointer-events: none; animation: flicker 2.4s ease-in-out infinite alternate; }
-.map-label { fill: #efe6d8; font: 700 24px var(--display); letter-spacing: 2px; text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: rgba(0, 0, 0, 0.7); stroke-width: 4px; }
-
-.ring-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.2rem; }
-.ring-tabs button {
-  flex: 1; padding: 0.45rem 0; cursor: pointer;
-  font: 700 0.85rem var(--display); letter-spacing: 0.1em; color: var(--ink-dim);
-  background: #1a1618; border: 1px solid var(--stone-edge);
+.eclipse::after {
+  content: ""; position: absolute; inset: 3%; border-radius: 50%;
+  background: radial-gradient(circle at 46% 44%, #19140d, #0b0907 70%);
+  transform: translate(7%, -5%);
+  animation: moon 5s cubic-bezier(.3, .1, .2, 1) 0.4s both;
 }
-.ring-tabs button[aria-selected="true"] { color: #f4e9dc; border-color: var(--blood); background: #2a1416; }
-.ring-panel h3 { font-size: 1.5rem; color: #efe6d8; }
-.quote { font-style: italic; color: var(--gold); }
-.meta { color: var(--ink-dim); font-size: 1rem; border-top: 1px solid var(--stone-edge); padding-top: 0.8rem; margin-top: 1rem; }
-.fate { font-family: var(--display); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 0.3rem; }
-.fate::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; background: #555; vertical-align: 1px; }
-.fate-green::before { background: var(--green); box-shadow: 0 0 8px var(--green); }
-.fate-orange::before { background: var(--orange); box-shadow: 0 0 8px var(--orange); }
-.fate-red::before { background: var(--red); box-shadow: 0 0 8px var(--red); }
+@keyframes moon { from { transform: translate(80%, -45%); } }
 
-/* Systems */
-.systems { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--stone-edge); border: 1px solid var(--stone-edge); }
-.card { position: relative; background: var(--bg-2); padding: 1.6rem 1.5rem 1.4rem; overflow: hidden; transition: background 0.3s; }
-.card:hover { background: #1c1719; }
-.card p { color: var(--ink-dim); font-size: 1.05rem; margin: 0; }
-.glyph {
-  position: absolute; right: 0.8rem; top: 0.2rem; font-size: 3.4rem; line-height: 1;
-  font-family: "Segoe UI Historic", "Noto Sans Runic", serif; color: var(--blood); opacity: 0.22;
-  transition: opacity 0.3s, text-shadow 0.3s;
+.hero-text { max-width: 62rem; }
+.hero h1 {
+  font: 400 clamp(5.2rem, 22vw, 18rem)/0.78 var(--black);
+  color: var(--ink);
+  margin-left: -0.04em;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 12px 50px rgba(0, 0, 0, 0.55);
 }
-.card:hover .glyph { opacity: 0.6; text-shadow: 0 0 18px var(--blood-hi); }
-
-/* Roadmap */
-.roadmap { list-style: none; margin: 0 auto; padding: 0; max-width: 46rem; border-left: 1px solid var(--stone-edge); }
-.roadmap li { position: relative; padding: 0 0 2rem 2rem; }
-.roadmap li::before {
-  content: ""; position: absolute; left: -7px; top: 0.35rem; width: 12px; height: 12px; transform: rotate(45deg);
-  background: var(--bg); border: 1px solid var(--gold);
+.hero-line { max-width: 33rem; margin-top: 2rem; font-size: 1.32rem; line-height: 1.6; }
+.hero-links { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.2rem; }
+.walk {
+  font: 400 2.1rem/1 var(--black); color: var(--accent); text-decoration: none;
+  border-bottom: 2px solid currentColor; padding-bottom: 0.15rem;
 }
-.roadmap li.done::before { background: var(--gold); }
-.roadmap li.active::before { border-color: var(--blood-hi); box-shadow: 0 0 10px var(--blood-hi); }
-.roadmap p { color: var(--ink-dim); }
-.stat-line { text-align: center; font-family: var(--display); letter-spacing: 0.12em; color: var(--ink-dim); margin-top: 1.5rem; font-size: 0.95rem; }
-.stat-line span { color: var(--gold); font-size: 1.6rem; vertical-align: -2px; margin: 0 0.15rem; }
+.walk:hover { color: var(--ink); }
+.quiet { color: var(--dim); font-style: italic; }
 
-/* Join */
-.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
-.role p { color: var(--ink-dim); font-size: 1.05rem; }
-.contact { text-align: center; max-width: 40rem; margin: 0 auto; padding: 2.2rem 1.6rem; }
-.contact h3 { font-size: 1.4rem; }
-.contact p { color: var(--ink-dim); }
-.contact .hero-actions { margin-top: 1.4rem; }
+/* Rings */
+.ring {
+  min-height: 130vh;
+  padding: 26vh var(--gutter) 18vh calc(var(--rail) + var(--gutter));
+  max-width: 76rem;
+}
+.ring-head { margin-bottom: 3.5rem; }
+.ring h2 { font: 400 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); color: var(--ink); }
+.motto { font-style: italic; color: var(--dim); font-size: 1.35rem; margin-top: 0.9rem; max-width: 30rem; }
 
-.footer { text-align: center; padding: 2rem var(--gutter) 3rem; color: #6c635b; font-size: 0.9rem; border-top: 1px solid var(--stone-edge); }
-.footer .runes { margin: 1rem 0 0; font-size: 0.8rem; }
+.ring-body { display: grid; grid-template-columns: minmax(0, 34rem) minmax(0, 19rem); gap: 3rem 6rem; align-items: start; }
+@media (max-width: 899px) { .ring-body { grid-template-columns: 1fr; } }
+.prose .lead { font-size: 1.38rem; line-height: 1.6; margin-bottom: 2.6rem; }
+.prose h3 { font: 400 1.4rem/1.3 var(--caps); color: var(--accent); margin: 2.2rem 0 0.45rem; }
+.prose p { hyphens: auto; }
 
-/* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s ease; }
-.reveal.visible { opacity: 1; transform: none; }
+.fall { position: sticky; top: 30vh; }
+.fall-head { font: 400 2.2rem/1 var(--black); color: var(--accent); margin-bottom: 0.8rem; }
+.fall p:last-child { font-style: italic; font-size: 1.32rem; line-height: 1.55; color: var(--ink); }
+
+.edge { min-height: 90vh; }
+.edge h2 { color: var(--dim); }
+
+.void {
+  min-height: 150vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 0 var(--gutter);
+  font-style: italic; font-size: 1.5rem; color: var(--ink);
+}
+.void-small { font-size: 1.1rem; color: var(--dim); margin-top: 1rem; }
+
+/* The notice board in Last Hearth. */
+.board {
+  position: relative;
+  padding: 18vh var(--gutter) 22vh calc(var(--rail) + var(--gutter));
+  background:
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 148px),
+    repeating-linear-gradient(90deg, transparent 0 60px, rgba(255, 220, 160, 0.025) 60px 90px, transparent 90px 148px),
+    linear-gradient(180deg, transparent, rgba(60, 38, 18, 0.55) 12%, rgba(52, 33, 16, 0.75));
+}
+.board-head { max-width: 36rem; margin-bottom: 4.5rem; }
+.board h2 { font: 400 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); margin-bottom: 1.6rem; }
+
+.notices {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2.5rem 2rem;
+  max-width: 70rem; align-items: start;
+}
+.notice {
+  position: relative; isolation: isolate; color: var(--paper-ink);
+  padding: 2.2rem 1.7rem 1.5rem;
+  font-size: 1.12rem; line-height: 1.55;
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.45));
+}
+/* The paper sits behind the text so its torn edge does not clip the shadow. */
+.notice::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.25), transparent 60%),
+    radial-gradient(80% 60% at 90% 100%, rgba(120, 80, 30, 0.25), transparent 70%),
+    var(--paper);
+  clip-path: polygon(0 2%, 7% 0, 22% 1.5%, 41% 0, 63% 1%, 82% 0, 100% 1.6%, 99% 30%, 100% 58%, 98.6% 82%, 100% 99%, 77% 98%, 54% 100%, 31% 98.4%, 12% 100%, 0 98%, 1.2% 70%, 0 41%);
+}
+.notice::before {
+  content: ""; position: absolute; top: 0.8rem; left: 50%; width: 12px; height: 12px; margin-left: -6px;
+  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #9a9086, #3b352f 70%);
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.45);
+}
+.notice h3 { font: 400 2.1rem/0.95 var(--black); margin-bottom: 0.9rem; }
+.notice p + p { margin-top: 0.7rem; }
+.notice .sig { text-align: right; font-style: italic; color: #5d4a35; margin-top: 1.1rem; }
+.n1 { grid-column: 1 / span 4; transform: rotate(-1.6deg); }
+.n2 { grid-column: 5 / span 4; transform: rotate(1.1deg) translateY(2.5rem); }
+.n3 { grid-column: 9 / span 4; grid-row: span 2; transform: rotate(-0.6deg); }
+.n4 { grid-column: 2 / span 4; transform: rotate(0.9deg); }
+.n5 { grid-column: 6 / span 3; transform: rotate(-2deg) translateY(1.5rem); }
+@media (max-width: 899px) {
+  .notices { grid-template-columns: 1fr; gap: 2rem; }
+  .notices .notice { grid-column: auto; grid-row: auto; }
+  .n2, .n5 { transform: rotate(1deg); }
+}
+.ledger ul { list-style: none; margin: 0; padding: 0; }
+.ledger li { position: relative; padding-left: 1.6rem; margin-bottom: 0.45rem; }
+.ledger li::before { position: absolute; left: 0; top: 0; }
+.ledger .yes::before { content: "\2713"; color: #3f5a24; }
+.ledger .no { color: #6b5842; }
+.ledger .no::before { content: "\25CB"; color: #8a3a22; }
+
+/* The sealed letter. Breaking the seal reveals the contact links. */
+.letter { position: relative; max-width: 34rem; margin: 9rem 0 0 auto; }
+@media (max-width: 899px) { .letter { margin-top: 6rem; } }
+.letter-paper {
+  background:
+    linear-gradient(180deg, transparent calc(50% - 1px), rgba(0, 0, 0, 0.12) 50%, transparent calc(50% + 2px)),
+    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.25), transparent 60%),
+    var(--paper);
+  color: var(--paper-ink);
+  padding: 2.4rem 2.2rem 3.4rem;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.5);
+  transform: rotate(-0.8deg);
+  font-size: 1.2rem; line-height: 1.6;
+}
+.letter-to { font-style: italic; }
+.letter-inner {
+  display: grid; grid-template-rows: 1fr; margin-top: 0.6rem;
+  transition: grid-template-rows 0.9s ease, opacity 0.9s ease;
+}
+.letter-inner > div { min-height: 0; overflow: hidden; }
+.letter[data-sealed] .letter-inner { grid-template-rows: 0fr; opacity: 0; }
+.letter-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; margin-top: 1.2rem; }
+.letter-links a { color: var(--wax); font-size: 1.3rem; }
+
+.seal {
+  position: absolute; left: 50%; bottom: -34px; width: 84px; height: 84px; margin-left: -42px;
+  padding: 0; border: 0; background: none; cursor: pointer;
+}
+.letter:not([data-sealed]) .seal { pointer-events: none; }
+.seal-half {
+  position: absolute; inset: 0; border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
+  background: radial-gradient(circle at 38% 32%, #b23a32, var(--wax) 55%, #4a0c0c);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 0 0 6px rgba(0, 0, 0, 0.12);
+  transition: transform 0.8s cubic-bezier(.5, -0.3, .6, 1), opacity 0.8s ease;
+}
+.seal-half::after {
+  content: "E"; position: absolute; inset: 0; display: grid; place-items: center;
+  font: 400 3rem/1 var(--black); color: #5b0f0f;
+  text-shadow: 1px 1px 0 rgba(255, 140, 120, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.35);
+}
+.seal-half.left { clip-path: polygon(0 0, 54% 0, 46% 30%, 56% 52%, 44% 76%, 50% 100%, 0 100%); }
+.seal-half.right { clip-path: polygon(54% 0, 100% 0, 100% 100%, 50% 100%, 44% 76%, 56% 52%, 46% 30%); }
+.seal:hover .seal-half.left { transform: rotate(-4deg); }
+.seal:hover .seal-half.right { transform: rotate(4deg); }
+.letter:not([data-sealed]) .seal-half.left { transform: translate(-60px, 120px) rotate(-70deg); opacity: 0; }
+.letter:not([data-sealed]) .seal-half.right { transform: translate(50px, 140px) rotate(80deg); opacity: 0; }
+.seal-hint {
+  position: absolute; left: 0; right: 0; bottom: -4.6rem; text-align: center;
+  font-style: italic; color: var(--dim); transition: opacity 0.4s;
+}
+.letter:not([data-sealed]) .seal-hint { opacity: 0; }
+
+.footer {
+  padding: 2.5rem var(--gutter) 3.5rem calc(var(--rail) + var(--gutter));
+  color: var(--dim); font-size: 0.95rem; font-style: italic;
+  background: rgba(30, 20, 10, 0.75);
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .fog, .embers circle, .hearth-glow { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  body { transition: none; }
+  .eclipse::after { animation: none; }
+  .letter-inner, .seal-half { transition: none; }
 }

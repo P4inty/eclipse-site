@@ -3,302 +3,231 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eclipse · Hytale Roleplay</title>
-  <meta name="description" content="Eclipse is a dark fantasy roleplay server for Hytale. A ring world where nobody survives alone. We are looking for builders, testers and storytellers.">
-  <meta property="og:title" content="Eclipse · Dark fantasy roleplay for Hytale">
-  <meta property="og:description" content="A dying ring world where nobody survives alone. Professions that need each other, death with meaning, corruption and madness.">
+  <title>Eclipse, a roleplay server for Hytale</title>
+  <meta name="description" content="Eclipse is a dark fantasy roleplay server for Hytale. A ring world where nobody survives alone. We are looking for testers, builders and storytellers.">
+  <meta property="og:title" content="Eclipse, a roleplay server for Hytale">
+  <meta property="og:description" content="Walk the road from the last city to the edge of the world. Nobody survives alone.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0d0b0c">
+  <meta name="theme-color" content="#2e261a">
   <link rel="icon" href="assets/sigil.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-  <div class="fog" aria-hidden="true"></div>
-  <canvas class="ash" aria-hidden="true"></canvas>
+<body data-ring="hearth">
+  <canvas class="weather" aria-hidden="true"></canvas>
+  <div class="road" aria-hidden="true"></div>
+  <p class="distance" aria-live="off">At the hearth</p>
 
-  <header class="nav">
-    <a class="brand" href="#top"><img src="assets/sigil.svg" alt="" width="28" height="28"> Eclipse</a>
-    <nav>
-      <a href="#world">World</a>
-      <a href="#systems">Systems</a>
-      <a href="#status">Status</a>
-      <a class="nav-cta" href="#join">Join us</a>
-    </nav>
+  <header class="hero" data-ring="hearth">
+    <div class="eclipse" aria-hidden="true"></div>
+    <div class="hero-text">
+      <h1>Eclipse</h1>
+      <p class="hero-line">A roleplay server for Hytale, set in a dying world of three rings around the last city.
+        The further you walk from its fire, the richer the earth and the shorter your life. Nobody survives alone.</p>
+      <p class="hero-links">
+        <a class="walk" href="#cage">Walk the road</a>
+        <a class="quiet" href="#board">or go straight to the notice board</a>
+      </p>
+    </div>
   </header>
 
-  <main id="top">
-    <!-- Hero -->
-    <section class="hero">
-      <p class="runes" aria-hidden="true">ᛖ ᚲ ᛚ ᛁ ᛈ ᛊ ᛖ</p>
-      <h1>Eclipse</h1>
-      <p class="tagline">A dark fantasy roleplay server for Hytale.</p>
-      <p class="lede">A dying world laid out in three rings around the last city. The further you go, the richer the
-        earth and the closer death. Your standing is measured in renown, scars and alliances, not levels.
-        <em>Nobody survives alone.</em></p>
-      <div class="hero-actions">
-        <a class="btn btn-blood" href="#join">Help us build it</a>
-        <a class="btn" href="#world">Enter the world</a>
+  <main>
+    <section class="ring" id="cage" data-ring="cage" data-from="0" data-to="1500">
+      <div class="ring-head">
+        <h2>The Gilded Cage</h2>
+        <p class="motto">Eternal autumn in a suffocating dusk.</p>
       </div>
-      <p class="hero-note">In development · closed testing · Hytale server 0.6.8</p>
-    </section>
+      <div class="ring-body">
+        <div class="prose">
+          <p class="lead">Flat farmland under a golden-grey fog. Oaks and birches with dry leaves, still ponds, wild
+            wheat. The only ring where anything grows, and the only one that is safe. Safe, not happy.</p>
 
-    <!-- Pillars -->
-    <section class="section" id="pillars">
-      <h2><span>The five pillars</span></h2>
-      <div class="pillars">
-        <article class="slab">
-          <h3>Forced interdependence</h3>
-          <p>No one completes a value chain alone. The miner needs the smelter, the smith needs both, and the
-            alchemist's oil is what keeps a blade from rusting.</p>
-        </article>
-        <article class="slab">
-          <h3>Roleplay as gameplay</h3>
-          <p>You rise through renown and appointments granted by other characters. There is nothing to grind.</p>
-        </article>
-        <article class="slab">
-          <h3>Weight of the world</h3>
-          <p>Fog, darkness, a quiet HUD. Wounds linger, minds fray, and death has consequences.</p>
-        </article>
-        <article class="slab">
-          <h3>Text over voice</h3>
-          <p>Speech carries 3, 20 or 50 blocks and breaks up at the edge. No global chat. News travels by letter.</p>
-        </article>
-        <article class="slab">
-          <h3>Narrative consequence</h3>
-          <p>Death is a story moment, not a reset. Where you fall decides what you lose.</p>
-        </article>
-      </div>
-    </section>
+          <h3>Last Hearth</h3>
+          <p>The capital stands where the six highways meet, and it is built by hand, block by block: walls and gates,
+            a mint, a post office, plots rented by the week. Inside its walls only masons and carpenters may build.</p>
 
-    <!-- World -->
-    <section class="section" id="world">
-      <h2><span>The ring world</span></h2>
-      <p class="intro">The world is a circle around Last Hearth, the capital. Six highways leave its gates and decay as
-        they run outward. Beyond the last ring rises a wall of basalt, and beyond that, nothing. Select a ring.</p>
+          <h3>A trade, learned from a master</h3>
+          <p>Every character takes up one trade and at most a second. You learn it as the apprentice of a master and
+            rise from apprentice to journeyman to master, never by grinding. A miner digs the ore, a smelter turns it
+            into bars, a smith forges the blade, and the alchemist's oil keeps it from rusting. Anyone else who breaks
+            ore out of the rock gets worthless stone.</p>
 
-      <div class="world">
-        <svg class="map" viewBox="-500 -500 1000 1000" role="img" aria-label="Map of the three rings">
-          <defs>
-            <radialGradient id="g-void"><stop offset="0.9" stop-color="#050405"/><stop offset="1" stop-color="#000"/></radialGradient>
-            <radialGradient id="g-cage" cx="0" cy="0" r="161" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#8a6a32"/><stop offset="0.8" stop-color="#5e4a26"/><stop offset="1" stop-color="#3f3a22"/>
-            </radialGradient>
-            <radialGradient id="g-weald" cx="0" cy="0" r="323" gradientUnits="userSpaceOnUse">
-              <stop offset="0.5" stop-color="#3a3a22"/><stop offset="0.8" stop-color="#2b3220"/><stop offset="1" stop-color="#2a2522"/>
-            </radialGradient>
-            <radialGradient id="g-scars" cx="0" cy="0" r="484" gradientUnits="userSpaceOnUse">
-              <stop offset="0.66" stop-color="#262128"/><stop offset="1" stop-color="#141117"/>
-            </radialGradient>
-            <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7"/>
-              <feDisplacementMap in="SourceGraphic" scale="9"/></filter>
-          </defs>
-          <circle r="500" fill="url(#g-void)"/>
-          <g filter="url(#rough)">
-            <circle class="ring" data-ring="mountains" r="500" fill="#1c1a1d" stroke="#3a3438" stroke-width="2"/>
-            <circle class="ring" data-ring="scars" r="484" fill="url(#g-scars)"/>
-            <circle class="ring" data-ring="weald" r="323" fill="url(#g-weald)"/>
-            <circle class="ring" data-ring="cage" r="161" fill="url(#g-cage)"/>
-          </g>
-          <g class="roads" aria-hidden="true">
-            <line x1="0" y1="0" x2="0" y2="-470" transform="rotate(15)"/>
-            <line x1="0" y1="0" x2="0" y2="-470" transform="rotate(75)"/>
-            <line x1="0" y1="0" x2="0" y2="-470" transform="rotate(135)"/>
-            <line x1="0" y1="0" x2="0" y2="-470" transform="rotate(195)"/>
-            <line x1="0" y1="0" x2="0" y2="-470" transform="rotate(255)"/>
-            <line x1="0" y1="0" x2="0" y2="-470" transform="rotate(315)"/>
-            <circle r="242" class="ringroad"/>
-          </g>
-          <g class="embers" aria-hidden="true">
-            <circle cx="210" cy="-330" r="2.4"/><circle cx="-380" cy="120" r="2"/><circle cx="90" cy="400" r="2.6"/>
-            <circle cx="-260" cy="-340" r="1.8"/><circle cx="395" cy="140" r="2.2"/><circle cx="-120" cy="-430" r="1.6"/>
-          </g>
-          <circle class="hearth" r="10"/>
-          <circle class="hearth-glow" r="26"/>
-          <text class="map-label" y="-30">Last Hearth</text>
-        </svg>
+          <h3>Standing is given by others</h3>
+          <p>There are no levels. Good roleplay earns renown, and renown lets someone above you appoint you: from
+            peasant to specialist, gentry, high lord. Whoever appoints you stakes their own name on it. The branded
+            stand outside all of it.</p>
 
-        <div class="ring-info slab" aria-live="polite">
-          <div class="ring-tabs" role="tablist">
-            <button role="tab" data-ring="cage" aria-selected="true">I</button>
-            <button role="tab" data-ring="weald">II</button>
-            <button role="tab" data-ring="scars">III</button>
-            <button role="tab" data-ring="mountains">Edge</button>
-          </div>
-          <div class="ring-panel" data-ring="cage">
-            <p class="fate fate-green">Fate: green · radius 0 to 1500</p>
-            <h3>The Gilded Cage</h3>
-            <p class="quote">Eternal autumn in a suffocating dusk.</p>
-            <p>Flat farmland under golden-grey fog, oaks and birches with dry leaves, small still ponds. The only safe
-              place to farm. Its heart is <strong>Last Hearth</strong>, a capital built block by block by hand, with a
-              mint, a post office, a notice board and plots for rent.</p>
-            <p class="meta">Food, wood, first herbs. No stone, no ore. Fall here and you wake in the infirmary.</p>
-          </div>
-          <div class="ring-panel" data-ring="weald" hidden>
-            <p class="fate fate-orange">Fate: orange · radius 1500 to 3000</p>
-            <h3>The Rotting Weald</h3>
-            <p class="quote">A diseased swamp where the corruption has taken root.</p>
-            <p>Mud-brown water, dead trees, rain and ground fog. Pools of murky poison slow and sicken the careless.
-              Snakes and bandits by day; at night wolf packs, spiders and the dead.</p>
-            <p class="meta">Copper, iron, silver, swamp alchemy. Fall here and you live, but you keep a scar.</p>
-          </div>
-          <div class="ring-panel" data-ring="scars" hidden>
-            <p class="fate fate-red">Fate: red · radius 3000 to 4500</p>
-            <h3>The Cinder Scars</h3>
-            <p class="quote">The source of the corruption. Dark, creepy, lonely.</p>
-            <p>Flat ash dunes under a near-black sky, glowing cracks, lone basalt claws. Every minute here fills your
-              corruption. Below lie the <strong>Primordial Caverns</strong>, a withered forest of stone and bone.</p>
-            <p class="meta">Thorium, adamantite, mithril, void ingredients. Fall here and you are gone for good.</p>
-          </div>
-          <div class="ring-panel" data-ring="mountains" hidden>
-            <p class="fate">The edge · radius 4500 and beyond</p>
-            <h3>The Border Mountains</h3>
-            <p class="quote">A wall of basalt, and then the Void.</p>
-            <p>Scree foothills rise into cliffs of up to 300 blocks, ash on the ledges, ember veins in the rock. No one
-              climbs them. No one builds there. What lies beyond is nothing at all.</p>
-            <p class="meta">The world ends here.</p>
-          </div>
+          <h3>Coin you can lose</h3>
+          <p>Copper, silver and gold coins are items in your pocket. Only the gentry may strike them at the mint, and
+            the mint gives less the more was struck this week. Trade chests sell while their owner is away. The notice
+            board pays whoever brings what was asked for.</p>
+
+          <h3>Words travel no further than a voice</h3>
+          <p>Talk carries twenty blocks, a whisper three, a shout fifty, and the edges break up. There is no global
+            chat. Anything said further away goes by letter: sealed, carried by hand, and possibly opened on the way.</p>
+
+          <h3>Land grows back</h3>
+          <p>Wilds that no one has touched for a week are reborn with fresh ore, trees and herbs. Drive a stake into the
+            ground to keep a piece of land as it is.</p>
         </div>
+        <aside class="fall">
+          <p class="fall-head">If you fall here</p>
+          <p>You lie where you dropped. Later you wake in the infirmary of Last Hearth, poorer in pride only.</p>
+        </aside>
       </div>
     </section>
 
-    <!-- Systems -->
-    <section class="section" id="systems">
-      <h2><span>How the world bites</span></h2>
-      <p class="intro">Every system below runs on the server today, at least in a first version.</p>
-      <div class="systems">
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᚠ</span>
-          <h3>Professions</h3>
-          <p>A main trade and at most one second. You learn only as the apprentice of a master. Miner, smelter,
-            smith. Farmer, cook. Herbalist, alchemist. Surgeon. Anyone else who breaks ore gets worthless rock.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᛟ</span>
-          <h3>Castes &amp; renown</h3>
-          <p>Branded, Peasantry, Specialists, Gentry, High Lords. Renown is granted for good roleplay, and promotion
-            is an appointment by someone above you who stakes their own name on it.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᚺ</span>
-          <h3>Wounds</h3>
-          <p>A heavy hit leaves a deep wound: bleeding, a broken leg, an internal injury. Anyone can bandage. Only a
-            surgeon can set a leg or open you up. Wounds survive relog and respawn.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᛞ</span>
-          <h3>Fate</h3>
-          <p>At zero health you collapse where you fell. In the Cage you wake in the infirmary. In the Weald you rise
-            with a scar for life. In the Scars your name goes on the memorial wall.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᛉ</span>
-          <h3>Corruption</h3>
-          <p>The ash fills you, minute by minute. Only the Purifying Brew, made from herbs of the safest ring, pushes
-            it back. At full corruption the character dies.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᛜ</span>
-          <h3>Sanity</h3>
-          <p>Darkness and death wear down the mind. Sleep, fire, good food and dark ale bring it back. Let it slip and
-            you hear whispers in chat, in the names of the people standing next to you.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᛗ</span>
-          <h3>Coin &amp; trade</h3>
-          <p>Copper, silver and gold coins are items you can lose. Only the Gentry may strike them at the mint.
-            Trade chests sell while you sleep; a notice board pays for goods and bounties.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᚱ</span>
-          <h3>Letters</h3>
-          <p>There is no global chat. A letter is an item, sealed and carried by hand to a mailbox. Anyone may deliver
-            it for the postage. Anyone may break the seal, and the recipient will know.</p>
-        </article>
-        <article class="card">
-          <span class="glyph" aria-hidden="true">ᛃ</span>
-          <h3>Land that renews</h3>
-          <p>Unclaimed wilds that no one touches for a week grow back with fresh ore, trees and herbs. Drive a stake
-            to keep a chunk. In the city, plots are rented by the week.</p>
-        </article>
+    <section class="ring" id="weald" data-ring="weald" data-from="1500" data-to="3000">
+      <div class="ring-head">
+        <h2>The Rotting Weald</h2>
+        <p class="motto">A diseased swamp where the corruption has taken root.</p>
       </div>
-    </section>
+      <div class="ring-body">
+        <div class="prose">
+          <p class="lead">More water than land, brown as mud. Dead trees, rain, fog close to the ground. The highway
+            sinks into a causeway that has fallen in. Copper, iron and silver lie under the swamp.</p>
 
-    <!-- Status -->
-    <section class="section" id="status">
-      <h2><span>Where we stand</span></h2>
-      <ol class="roadmap">
-        <li class="done">
-          <h3>The world</h3>
-          <p>Three biomes, caverns, border mountains, atmosphere and weather per ring, poison water, decaying roads,
-            ruins per ring, alchemy herbs by tier, our own mob spawns per ring and time of day.</p>
-        </li>
-        <li class="active">
-          <h3>The foundation</h3>
-          <p>Characters, proximity chat, renown and castes, claims, city plots and rent, permissions, an admin web
-            app for the staff. <strong>Still to come:</strong> Last Hearth itself, built by hand.</p>
-        </li>
-        <li class="active">
-          <h3>The struggle to survive</h3>
-          <p>Wounds, professions with our own recipe book, coins, trade chests, notice board, letters.
-            <strong>Next:</strong> infection, the remaining trades, more threats.</p>
-        </li>
-        <li class="active">
-          <h3>The horror</h3>
-          <p>Corruption, sanity and Fate in a first version. <strong>Next:</strong> the corrupted rising as enemies,
-            supernatural foes, players seen as monsters.</p>
-        </li>
-      </ol>
-      <p class="stat-line"><span>10</span> server plugins · <span>3</span> rings · <span>0</span> levels</p>
-    </section>
+          <h3>Poison in the water</h3>
+          <p>Some pools are not water. They are olive and still, they slow you, and they eat at you while you wade.</p>
 
-    <!-- Join -->
-    <section class="section" id="join">
-      <h2><span>Join the circle</span></h2>
-      <p class="intro">Eclipse is a small project with a big world. We are looking for people who like the idea of a
-        slow, harsh, story-driven server and want to shape it before it opens.</p>
-      <div class="roles">
-        <article class="slab role">
-          <h3>Testers</h3>
-          <p>Walk the rings, die in them, break the systems. Many features need two or more players to test at all:
-            treating wounds, apprenticeships, letters, trade.</p>
-        </article>
-        <article class="slab role">
-          <h3>Builders</h3>
-          <p>Last Hearth is built by hand: walls and six gates, cathedral, keep, bazaar, infirmary, post office,
-            taverns. Plus ruins and camps for the wilds.</p>
-        </article>
-        <article class="slab role">
-          <h3>Storytellers &amp; game masters</h3>
-          <p>Lore, factions, the Rot Cult, the first masters of each trade. People who want to run scenes and events
-            once players arrive.</p>
-        </article>
-        <article class="slab role">
-          <h3>Artists &amp; developers</h3>
-          <p>Models and textures in the Hytale style, music for the rings. Java for the server plugins, Svelte and Go
-            for the admin app.</p>
-        </article>
-      </div>
+          <h3>Wounds that stay</h3>
+          <p>A hard enough blow leaves a deep wound. A bleeding cut anyone can bandage. A broken leg makes you limp
+            until a surgeon splints it. An internal injury takes part of your strength until a surgeon opens you up.
+            Wounds outlast a relog and a restart.</p>
 
-      <div class="contact slab">
-        <p class="runes" aria-hidden="true">ᛟ ᛞ ᛟ</p>
-        <h3>Send word</h3>
-        <p>Tell us who you are, what you would like to do, and how much time you have. No experience required, only
-          patience for a world that is meant to be hard.</p>
-        <div class="hero-actions">
-          <a class="btn btn-blood" href="https://discord.gg/REPLACE_ME" data-placeholder>Join the Discord</a>
-          <a class="btn" href="https://github.com/P4inty">GitHub</a>
+          <h3>Night</h3>
+          <p>By day there are snakes and bandits. At night come wolf packs, spiders and the dead, and the dark itself
+            wears on the mind. Sleep, fire, a proper meal and a mug of dark ale bring it back.</p>
         </div>
+        <aside class="fall">
+          <p class="fall-head">If you fall here</p>
+          <p>You live, and you carry it for the rest of that life. Lost an eye, lost a hand. Others will see it, and
+            some will call you the One-Eyed.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ring" id="scars" data-ring="scars" data-from="3000" data-to="4500">
+      <div class="ring-head">
+        <h2>The Cinder Scars</h2>
+        <p class="motto">Where the corruption comes from.</p>
+      </div>
+      <div class="ring-body">
+        <div class="prose">
+          <p class="lead">Flat ash dunes under a sky that is almost black. Cracks that glow. Now and then a claw of
+            basalt a hundred blocks high. The highway is a few paving stones in the ash. The richest metals of the
+            world are here: thorium, adamantite, mithril.</p>
+
+          <h3>The ash fills you</h3>
+          <p>Every minute in the Scars fills your corruption. It does not fade by itself. Only the Purifying Brew
+            pushes it back, brewed from herbs that grow in the Gilded Cage. The most dangerous ring depends on the
+            safest one. When the corruption is full, you die.</p>
+
+          <h3>Whispers</h3>
+          <p>Long enough in the dark, after enough death, and the mind starts to give. The screen closes in. Lines
+            appear in chat, in the names of people standing next to you, and they never said them.</p>
+
+          <h3>Below the ash</h3>
+          <p>Under the Scars lies a withered primeval forest of stone pillars, bone and pale grass, lit by a rare blue
+            mushroom. There is no way down. Not yet.</p>
+        </div>
+        <aside class="fall">
+          <p class="fall-head">If you fall here</p>
+          <p>You are gone. Most of what you carried lies in the ash for whoever finds it, and your name is cut into
+            the memorial wall of Last Hearth.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ring edge" id="edge" data-ring="edge" data-from="4500" data-to="4650">
+      <div class="ring-head">
+        <h2>The border mountains</h2>
+        <p class="motto">A wall of basalt, up to three hundred blocks high. No one climbs it.</p>
+      </div>
+    </section>
+
+    <section class="void" id="void" data-ring="void" data-from="4650" data-to="4650">
+      <p>Beyond the mountains there is nothing.</p>
+      <p class="void-small">That is the whole world, and most of it is still waiting for people.</p>
+    </section>
+
+    <section class="board" id="board" data-ring="board">
+      <div class="board-head">
+        <h2>The notice board</h2>
+        <p>Back in Last Hearth, by the gate. Eclipse is not open yet. It is being built by a small group, and we are
+          looking for people who want a slow, harsh world that runs on stories, and who want a say in it before it
+          opens.</p>
+      </div>
+
+      <div class="notices">
+        <article class="notice n1">
+          <h3>Wanted: the living</h3>
+          <p>To walk the rings, die in them and tell us what broke. Much of the world only works with two or more:
+            treating a wound, taking an apprentice, carrying a letter, a trade.</p>
+          <p class="sig">Testers</p>
+        </article>
+
+        <article class="notice n2">
+          <h3>Wanted: masons</h3>
+          <p>Last Hearth is still an empty clearing with six roads running into it. Walls and gates, a cathedral, a
+            keep, the bazaar, the infirmary, taverns. Ruins and camps for the wilds.</p>
+          <p class="sig">Builders</p>
+        </article>
+
+        <article class="notice n3 ledger">
+          <h3>What stands</h3>
+          <ul>
+            <li class="yes">The three rings, the caverns, the mountains, weather and spawns per ring</li>
+            <li class="yes">Characters, speech ranges, renown and castes</li>
+            <li class="yes">Trades and apprenticeships, our own recipe book</li>
+            <li class="yes">Wounds, the fall, corruption, the mind</li>
+            <li class="yes">Coin, the mint, trade chests, the notice board, letters, land</li>
+            <li class="no">Last Hearth itself</li>
+            <li class="no">Infection, the remaining trades, the corrupted rising again</li>
+          </ul>
+          <p class="sig">The steward</p>
+        </article>
+
+        <article class="notice n4">
+          <h3>Wanted: chroniclers</h3>
+          <p>Lore, factions, the Rot Cult in the swamp, the first masters of each trade. And game masters who want to
+            run scenes once there is someone to run them for.</p>
+          <p class="sig">Storytellers</p>
+        </article>
+
+        <article class="notice n5">
+          <h3>Wanted: artificers</h3>
+          <p>Models and textures in the Hytale style. Music for each ring. Java for the server plugins, Go and Svelte
+            for the tools of the staff.</p>
+          <p class="sig">Artists and developers</p>
+        </article>
+      </div>
+
+      <div class="letter" data-sealed>
+        <div class="letter-paper">
+          <p class="letter-to">To whoever reads this,</p>
+          <div class="letter-inner"><div>
+            <p>tell us who you are, what you would like to do, and how much time you have. No experience needed, only
+              patience with a world that is meant to be hard.</p>
+            <p class="letter-links">
+              <a href="https://discord.gg/REPLACE_ME">Join us on Discord</a>
+              <a href="https://github.com/P4inty">Find us on GitHub</a>
+            </p>
+          </div></div>
+        </div>
+        <button class="seal" type="button" aria-label="Break the seal and read the letter">
+          <span class="seal-half left"></span><span class="seal-half right"></span>
+        </button>
+        <p class="seal-hint">Break the seal</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Eclipse is a fan project and is not affiliated with or endorsed by Hypixel Studios. Hytale is a trademark of
-      its respective owners.</p>
-    <p class="runes" aria-hidden="true">ᛖ ᚲ ᛚ ᛁ ᛈ ᛊ ᛖ</p>
+    <p>Eclipse is a fan project, not affiliated with or endorsed by Hypixel Studios. Hytale is a trademark of its
+      owners.</p>
   </footer>
 
   <script src="assets/main.js" defer></script>

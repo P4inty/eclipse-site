@@ -117,19 +117,20 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
     radial-gradient(55% 45% at 78% 24%, rgba(255, 196, 110, 0.35), transparent 70%),
     linear-gradient(180deg, #140a26 0%, #3a1436 32%, #8c2f22 66%, transparent 100%);
 }
+/* Total eclipse (inline SVG). On load the moon slides over the sun; when it covers it the diamond ring flashes
+   and the corona comes out. */
 .eclipse {
-  position: absolute; top: 9vh; right: 9vw;
-  width: clamp(150px, 30vmin, 340px); aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, #fff6dc 0 58%, #ffc861 66%, rgba(255, 170, 70, 0) 72%);
-  box-shadow: 0 0 70px 22px rgba(255, 190, 90, 0.45), 0 0 200px 80px rgba(255, 120, 60, 0.22);
+  position: absolute; top: 2vh; right: 3vw;
+  width: clamp(260px, 50vmin, 560px); height: auto; overflow: visible;
 }
-.eclipse::after {
-  content: ""; position: absolute; inset: 3%; border-radius: 50%;
-  background: radial-gradient(circle at 46% 44%, #1e1026, #0c0610 70%);
-  transform: translate(7%, -5%);
-  animation: moon 5s cubic-bezier(.3, .1, .2, 1) 0.4s both;
-}
-@keyframes moon { from { transform: translate(80%, -45%); } }
+.ec-moon { animation: ec-moon 3.2s cubic-bezier(.25, .1, .2, 1) 0.3s both; }
+.ec-halo { animation: ec-halo 3.4s ease 0.3s both; }
+.ec-corona { transform-box: fill-box; transform-origin: center; animation: ec-corona 2.4s ease-out 3.1s both; }
+.ec-diamond { animation: ec-diamond 2.2s ease-out 3.1s both; }
+@keyframes ec-moon { from { transform: translate(105px, -62px); } }
+@keyframes ec-halo { from { opacity: 1; } to { opacity: 0.55; } }
+@keyframes ec-corona { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
+@keyframes ec-diamond { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0.2; } }
 
 .hero-text { max-width: 62rem; }
 .hero h1 {
@@ -298,6 +299,8 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   body { transition: none; }
-  .eclipse::after { animation: none; }
+  .ec-moon, .ec-halo, .ec-corona, .ec-diamond { animation: none; }
+  .ec-halo { opacity: 0.55; }
+  .ec-diamond { opacity: 0.2; }
   .letter-inner, .seal-half { transition: none; }
 }

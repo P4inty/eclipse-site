@@ -63,7 +63,7 @@
   function rnd(a, b) { return a + Math.random() * (b - a); }
 
   function leaf(top) {
-    const hues = ["#b8863b", "#8f6a2e", "#c99a4a", "#6e5326"];
+    const hues = ["#ff9a2e", "#e0621c", "#ffc247", "#b8401a"];
     return {
       kind: "leaf", x: rnd(0, w), y: top ? rnd(-h, 0) : rnd(0, h),
       vx: rnd(0.3, 0.9) * dpr, vy: rnd(0.35, 0.8) * dpr, size: rnd(3, 6) * dpr,
@@ -77,7 +77,7 @@
     };
   }
   function ash(top) {
-    const ember = Math.random() < 0.06;
+    const ember = Math.random() < 0.18;
     return {
       kind: ember ? "ember" : "ash", x: rnd(0, w), y: top ? rnd(-h, 0) : rnd(0, h),
       vx: rnd(-0.15, 0.25) * dpr, vy: rnd(0.25, 0.6) * dpr, r: rnd(0.7, 1.9) * dpr,
@@ -117,12 +117,12 @@
         ctx.rotate(p.rot);
         ctx.scale(1, Math.abs(Math.sin(t / 700 + p.sway)) * 0.7 + 0.3);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = 0.75;
+        ctx.globalAlpha = 0.85;
         ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
         ctx.restore();
       } else if (p.kind === "rain") {
         p.x += p.vx; p.y += p.vy;
-        ctx.strokeStyle = `rgba(170, 182, 160, ${p.a})`;
+        ctx.strokeStyle = `rgba(190, 240, 215, ${p.a})`;
         ctx.lineWidth = dpr;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
@@ -133,7 +133,7 @@
         p.y += p.vy;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, 6.2832);
-        ctx.fillStyle = p.kind === "ember" ? `rgba(214, 110, 42, ${p.a})` : `rgba(150, 140, 150, ${p.a})`;
+        ctx.fillStyle = p.kind === "ember" ? `rgba(255, 120, 40, ${p.a})` : `rgba(200, 170, 185, ${p.a})`;
         ctx.fill();
       }
       if (p.y > h + 30 || p.x > w + 30) {

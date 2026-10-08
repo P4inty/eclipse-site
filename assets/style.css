@@ -1,41 +1,41 @@
 /* Eclipse project site. The page is the road from Last Hearth to the Void: colours, weather and the road itself
    change with the ring in view (body[data-ring], set by main.js). */
 
-@property --sky { syntax: "<color>"; inherits: true; initial-value: #2b2318; }
-@property --fog { syntax: "<color>"; inherits: true; initial-value: #8a7550; }
-@property --ink { syntax: "<color>"; inherits: true; initial-value: #ece0c4; }
-@property --dim { syntax: "<color>"; inherits: true; initial-value: #b4a37f; }
-@property --accent { syntax: "<color>"; inherits: true; initial-value: #d49a3e; }
+@property --sky { syntax: "<color>"; inherits: true; initial-value: #24140b; }
+@property --fog { syntax: "<color>"; inherits: true; initial-value: #d0701f; }
+@property --ink { syntax: "<color>"; inherits: true; initial-value: #fff4e0; }
+@property --dim { syntax: "<color>"; inherits: true; initial-value: #f0d3a4; }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #ffbe45; }
 
 :root {
-  --text: "IM Fell English", "Iowan Old Style", Georgia, serif;
-  --caps: "IM Fell English SC", "IM Fell English", Georgia, serif;
+  --text: "Alegreya", "Iowan Old Style", Georgia, serif;
+  --caps: "Alegreya SC", "Alegreya", Georgia, serif;
   --black: "Jacquard 24", "UnifrakturMaguntia", "Old English Text MT", serif;
   --rail: 0px;
   --gutter: 20px;
-  --paper: #dcceac;
+  --paper: #efe2c0;
   --paper-ink: #2b2116;
   --wax: #7d1717;
 }
 @media (min-width: 900px) { :root { --rail: 64px; --gutter: 56px; } }
 
 body[data-ring="hearth"], body[data-ring="cage"] {
-  --sky: #2b2318; --fog: #8a7550; --ink: #ece0c4; --dim: #b4a37f; --accent: #d49a3e;
+  --sky: #24140b; --fog: #d0701f; --ink: #fff4e0; --dim: #f0d3a4; --accent: #ffbe45;
 }
 body[data-ring="weald"] {
-  --sky: #191d16; --fog: #4d5640; --ink: #dadccb; --dim: #9ca189; --accent: #aeaa3c;
+  --sky: #08201b; --fog: #1f8a6a; --ink: #f0f7e8; --dim: #c4dcc0; --accent: #d4ea4c;
 }
 body[data-ring="scars"] {
-  --sky: #110e13; --fog: #3c2c42; --ink: #d4cbd6; --dim: #8f8495; --accent: #d4622a;
+  --sky: #1a0712; --fog: #a3173f; --ink: #fff0f3; --dim: #f0bfcd; --accent: #ff7a2e;
 }
 body[data-ring="edge"] {
-  --sky: #0a090b; --fog: #1e1b20; --ink: #aaa4aa; --dim: #6f696f; --accent: #8a8086;
+  --sky: #0b0d1c; --fog: #34407a; --ink: #eef0ff; --dim: #b8c0e6; --accent: #9fb4ff;
 }
 body[data-ring="void"] {
-  --sky: #000; --fog: #000; --ink: #707070; --dim: #3d3d3d; --accent: #707070;
+  --sky: #000; --fog: #000; --ink: #f2f2f2; --dim: #a8a8a8; --accent: #f2f2f2;
 }
 body[data-ring="board"] {
-  --sky: #21170e; --fog: #6a4a26; --ink: #ecdcbc; --dim: #b8a07a; --accent: #c99437;
+  --sky: #2b1408; --fog: #b4521a; --ink: #fff3e0; --dim: #f2d3a6; --accent: #ffc24d;
 }
 
 * { box-sizing: border-box; }
@@ -44,7 +44,7 @@ body {
   margin: 0;
   background: var(--sky);
   color: var(--ink);
-  font: 400 1.2rem/1.68 var(--text);
+  font: 400 1.25rem/1.7 var(--text);
   font-kerning: normal;
   font-variant-ligatures: common-ligatures;
   overflow-x: hidden;
@@ -54,9 +54,11 @@ body {
 body::before {
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
-    radial-gradient(90% 55% at 70% 100%, color-mix(in srgb, var(--fog) 55%, transparent), transparent 70%),
-    radial-gradient(70% 40% at 10% 85%, color-mix(in srgb, var(--fog) 35%, transparent), transparent 70%);
+    radial-gradient(120% 60% at 75% 110%, color-mix(in srgb, var(--fog) 75%, transparent), transparent 70%),
+    radial-gradient(80% 45% at 0% 105%, color-mix(in srgb, var(--fog) 45%, transparent), transparent 70%),
+    linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--fog) 22%, transparent));
 }
+main p, main li { text-shadow: 0 1px 12px color-mix(in srgb, var(--sky) 80%, transparent); }
 a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 h1, h2, h3, p { margin: 0; }
@@ -95,7 +97,7 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 /* The milestone: how far down the road the reader is. Written along the road on wide screens. */
 .distance {
   position: fixed; z-index: 3; margin: 0;
-  font: italic 0.95rem/1 var(--text); color: var(--dim); white-space: nowrap;
+  font: 500 1rem/1 var(--text); color: var(--accent); white-space: nowrap;
   top: 10px; right: 12px; padding: 0.35rem 0.7rem;
   background: color-mix(in srgb, var(--sky) 85%, transparent);
 }
@@ -112,18 +114,18 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
   display: flex; align-items: flex-end;
   padding: 0 var(--gutter) 12vh calc(var(--rail) + var(--gutter));
   background:
-    radial-gradient(60% 50% at 76% 26%, rgba(214, 160, 82, 0.20), transparent 70%),
-    linear-gradient(180deg, #17120c 0%, transparent 60%);
+    radial-gradient(55% 45% at 78% 24%, rgba(255, 196, 110, 0.35), transparent 70%),
+    linear-gradient(180deg, #140a26 0%, #3a1436 32%, #8c2f22 66%, transparent 100%);
 }
 .eclipse {
   position: absolute; top: 9vh; right: 9vw;
   width: clamp(150px, 30vmin, 340px); aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, #f4e4bd 0 58%, #e0b46a 66%, rgba(224, 160, 80, 0) 71%);
-  box-shadow: 0 0 60px 18px rgba(222, 165, 85, 0.28), 0 0 160px 60px rgba(180, 120, 60, 0.14);
+  background: radial-gradient(circle at 50% 50%, #fff6dc 0 58%, #ffc861 66%, rgba(255, 170, 70, 0) 72%);
+  box-shadow: 0 0 70px 22px rgba(255, 190, 90, 0.45), 0 0 200px 80px rgba(255, 120, 60, 0.22);
 }
 .eclipse::after {
   content: ""; position: absolute; inset: 3%; border-radius: 50%;
-  background: radial-gradient(circle at 46% 44%, #19140d, #0b0907 70%);
+  background: radial-gradient(circle at 46% 44%, #1e1026, #0c0610 70%);
   transform: translate(7%, -5%);
   animation: moon 5s cubic-bezier(.3, .1, .2, 1) 0.4s both;
 }
@@ -136,14 +138,15 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
   margin-left: -0.04em;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 12px 50px rgba(0, 0, 0, 0.55);
 }
-.hero-line { max-width: 33rem; margin-top: 2rem; font-size: 1.32rem; line-height: 1.6; }
+.hero-line { max-width: 34rem; margin-top: 2rem; font-size: 1.45rem; line-height: 1.55; font-weight: 500; }
 .hero-links { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.2rem; }
 .walk {
-  font: 400 2.1rem/1 var(--black); color: var(--accent); text-decoration: none;
-  border-bottom: 2px solid currentColor; padding-bottom: 0.15rem;
+  font: 700 1.3rem/1 var(--text); color: #1c0f05; text-decoration: none;
+  background: var(--accent); padding: 0.75rem 1.3rem;
+  box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 45%, transparent);
 }
-.walk:hover { color: var(--ink); }
-.quiet { color: var(--dim); font-style: italic; }
+.walk:hover { background: var(--ink); }
+.quiet { color: var(--dim); }
 
 /* Rings */
 .ring {
@@ -153,27 +156,30 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 }
 .ring-head { margin-bottom: 3.5rem; }
 .ring h2 { font: 400 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); color: var(--ink); }
-.motto { font-style: italic; color: var(--dim); font-size: 1.35rem; margin-top: 0.9rem; max-width: 30rem; }
+.motto { font-style: italic; color: var(--accent); font-size: 1.45rem; margin-top: 0.9rem; max-width: 30rem; }
 
 .ring-body { display: grid; grid-template-columns: minmax(0, 34rem) minmax(0, 19rem); gap: 3rem 6rem; align-items: start; }
 @media (max-width: 899px) { .ring-body { grid-template-columns: 1fr; } }
-.prose .lead { font-size: 1.38rem; line-height: 1.6; margin-bottom: 2.6rem; }
-.prose h3 { font: 400 1.4rem/1.3 var(--caps); color: var(--accent); margin: 2.2rem 0 0.45rem; }
+.prose .lead { font-size: 1.45rem; line-height: 1.55; font-weight: 500; margin-bottom: 2.6rem; }
+.prose h3 { font: 700 1.5rem/1.3 var(--text); color: var(--accent); margin: 2.4rem 0 0.4rem; }
 .prose p { hyphens: auto; }
 
-.fall { position: sticky; top: 30vh; }
-.fall-head { font: 400 2.2rem/1 var(--black); color: var(--accent); margin-bottom: 0.8rem; }
-.fall p:last-child { font-style: italic; font-size: 1.32rem; line-height: 1.55; color: var(--ink); }
+.fall {
+  position: sticky; top: 30vh; padding: 1.4rem 1.5rem;
+  background: color-mix(in srgb, var(--fog) 22%, transparent);
+  border-top: 3px solid var(--accent);
+}
+.fall-head { font: 700 1.5rem/1.2 var(--text); color: var(--accent); margin-bottom: 0.6rem; }
+.fall p:last-child { font-size: 1.3rem; line-height: 1.5; color: var(--ink); }
 
 .edge { min-height: 90vh; }
-.edge h2 { color: var(--dim); }
 
 .void {
   min-height: 150vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
   text-align: center; padding: 0 var(--gutter);
-  font-style: italic; font-size: 1.5rem; color: var(--ink);
+  font-size: 1.8rem; color: var(--ink);
 }
-.void-small { font-size: 1.1rem; color: var(--dim); margin-top: 1rem; }
+.void-small { font-size: 1.3rem; color: var(--dim); margin-top: 1rem; }
 
 /* The notice board in Last Hearth. */
 .board {
@@ -182,7 +188,7 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
   background:
     repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 148px),
     repeating-linear-gradient(90deg, transparent 0 60px, rgba(255, 220, 160, 0.025) 60px 90px, transparent 90px 148px),
-    linear-gradient(180deg, transparent, rgba(60, 38, 18, 0.55) 12%, rgba(52, 33, 16, 0.75));
+    linear-gradient(180deg, transparent, rgba(92, 44, 16, 0.6) 12%, rgba(74, 34, 12, 0.8));
 }
 .board-head { max-width: 36rem; margin-bottom: 4.5rem; }
 .board h2 { font: 400 clamp(3.4rem, 10vw, 8rem)/0.85 var(--black); margin-bottom: 1.6rem; }
@@ -194,7 +200,7 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 .notice {
   position: relative; isolation: isolate; color: var(--paper-ink);
   padding: 2.2rem 1.7rem 1.5rem;
-  font-size: 1.12rem; line-height: 1.55;
+  font-size: 1.15rem; line-height: 1.5;
   filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.45));
 }
 /* The paper sits behind the text so its torn edge does not clip the shadow. */
@@ -211,9 +217,9 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
   border-radius: 50%; background: radial-gradient(circle at 35% 35%, #9a9086, #3b352f 70%);
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.45);
 }
-.notice h3 { font: 400 2.1rem/0.95 var(--black); margin-bottom: 0.9rem; }
+.notice h3 { font: 700 1.55rem/1.15 var(--caps); color: #7a1414; margin-bottom: 0.7rem; }
 .notice p + p { margin-top: 0.7rem; }
-.notice .sig { text-align: right; font-style: italic; color: #5d4a35; margin-top: 1.1rem; }
+.notice .sig { text-align: right; font-style: italic; color: #4a3a28; margin-top: 1.1rem; }
 .n1 { grid-column: 1 / span 4; transform: rotate(-1.6deg); }
 .n2 { grid-column: 5 / span 4; transform: rotate(1.1deg) translateY(2.5rem); }
 .n3 { grid-column: 9 / span 4; grid-row: span 2; transform: rotate(-0.6deg); }
@@ -228,7 +234,7 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 .ledger li { position: relative; padding-left: 1.6rem; margin-bottom: 0.45rem; }
 .ledger li::before { position: absolute; left: 0; top: 0; }
 .ledger .yes::before { content: "\2713"; color: #3f5a24; }
-.ledger .no { color: #6b5842; }
+.ledger .no { color: #5a4630; }
 .ledger .no::before { content: "\25CB"; color: #8a3a22; }
 
 /* The sealed letter. Breaking the seal reveals the contact links. */
@@ -279,14 +285,14 @@ body[data-ring="edge"] .road, body[data-ring="void"] .road { opacity: 0; }
 .letter:not([data-sealed]) .seal-half.right { transform: translate(50px, 140px) rotate(80deg); opacity: 0; }
 .seal-hint {
   position: absolute; left: 0; right: 0; bottom: -4.6rem; text-align: center;
-  font-style: italic; color: var(--dim); transition: opacity 0.4s;
+  font-weight: 700; color: var(--accent); transition: opacity 0.4s;
 }
 .letter:not([data-sealed]) .seal-hint { opacity: 0; }
 
 .footer {
   padding: 2.5rem var(--gutter) 3.5rem calc(var(--rail) + var(--gutter));
-  color: var(--dim); font-size: 0.95rem; font-style: italic;
-  background: rgba(30, 20, 10, 0.75);
+  color: var(--dim); font-size: 1rem;
+  background: rgba(30, 14, 6, 0.85);
 }
 
 @media (prefers-reduced-motion: reduce) {

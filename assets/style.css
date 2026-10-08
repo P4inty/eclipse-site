@@ -75,7 +75,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
   padding: 4rem var(--gutter);
 }
 .hero h1 {
-  font-size: clamp(3.4rem, 13vw, 8.5rem); letter-spacing: 0.22em; margin-right: -0.22em;
+  font-size: clamp(2.6rem, 11vw, 8.5rem); letter-spacing: 0.22em; margin-right: -0.22em;
   line-height: 1; color: #efe6d8;
   text-shadow: 0 0 40px rgba(201, 163, 90, 0.25), 0 0 2px rgba(0, 0, 0, 0.8);
 }
@@ -129,7 +129,8 @@ main, .nav, .footer { position: relative; z-index: 1; }
 .slab::after { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
 .slab p:last-child { margin-bottom: 0; }
 
-.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+.pillars { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+.pillars .slab { flex: 1 1 280px; max-width: 360px; }
 .pillars p { color: var(--ink-dim); font-size: 1.05rem; }
 
 /* World */
@@ -147,7 +148,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
 @keyframes flicker { from { opacity: 0.25; } to { opacity: 0.9; } }
 .hearth { fill: #ffb54a; pointer-events: none; }
 .hearth-glow { fill: #ffb54a; opacity: 0.18; pointer-events: none; animation: flicker 2.4s ease-in-out infinite alternate; }
-.map-label { fill: #efe6d8; font: 700 15px var(--display); letter-spacing: 2px; text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: rgba(0, 0, 0, 0.7); stroke-width: 4px; }
+.map-label { fill: #efe6d8; font: 700 24px var(--display); letter-spacing: 2px; text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: rgba(0, 0, 0, 0.7); stroke-width: 4px; }
 
 .ring-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.2rem; }
 .ring-tabs button {
